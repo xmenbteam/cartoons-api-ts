@@ -4,7 +4,6 @@ interface DB_Object {
   name: String;
   votes: Number;
   created_at: Date;
-  id: Number;
   description: String;
   img_url: String;
 }
