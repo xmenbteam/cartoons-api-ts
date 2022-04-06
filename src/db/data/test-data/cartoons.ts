@@ -1,17 +1,5 @@
 import { DB_Cartoon } from "../../../types/dataTypes";
 
-/**
-   {
-        name:
-        votes:
-        created_at:
-
-        description:
-        img_url:
-        studio_id:
-    }
- */
-
 const cartoonData: DB_Cartoon[] = [
   {
     name: "Dexter's Lab",
