@@ -1,8 +1,6 @@
-import { createTables, dropTables } from "../../utils/seed-utils";
+import { createTables, dropTables } from "../../utils/manage-tables";
 
 export const seed = async () => {
   await dropTables();
   await createTables();
-
-  console.log("fukyeh");
 };

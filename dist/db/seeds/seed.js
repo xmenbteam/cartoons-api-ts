@@ -10,10 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.seed = void 0;
-const seed_utils_1 = require("../../utils/seed-utils");
+const manage_tables_1 = require("../../utils/manage-tables");
 const seed = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, seed_utils_1.dropTables)();
-    yield (0, seed_utils_1.createTables)();
-    console.log("fukyeh");
+    yield (0, manage_tables_1.dropTables)();
+    yield (0, manage_tables_1.createTables)();
 });
 exports.seed = seed;
