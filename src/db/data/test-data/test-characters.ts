@@ -1,4 +1,6 @@
-export const testCharacters = [
+import { DB_Character } from "../../../types/dataTypes";
+
+const testCharacters: DB_Character[] = [
   {
     name: "Test 1",
     votes: 2,
@@ -6,49 +8,49 @@ export const testCharacters = [
     img_url: "www.google.com",
   },
   {
-    name: "Test 2",
+    name: "B Test 2",
     votes: 2,
     cartoon_id: 2,
     img_url: "www.google.com",
   },
   {
-    name: "Test 3",
-    votes: 2,
+    name: "C Test 3",
+    votes: 7,
     cartoon_id: 2,
     img_url: "www.google.com",
   },
   {
-    name: "Test 4",
-    votes: 2,
+    name: " D Test 4",
+    votes: 35,
     cartoon_id: 2,
     img_url: "www.google.com",
   },
   {
-    name: "Test 5",
-    votes: 2,
+    name: "J Test 5",
+    votes: 100,
     cartoon_id: 2,
     img_url: "www.google.com",
   },
   {
-    name: "Test 6",
+    name: "Q Test 6",
+    votes: -30,
+    cartoon_id: 3,
+    img_url: "www.google.com",
+  },
+  {
+    name: "P Test 7",
     votes: 2,
     cartoon_id: 3,
     img_url: "www.google.com",
   },
   {
-    name: "Test 7",
+    name: "F Test 8",
     votes: 2,
     cartoon_id: 3,
     img_url: "www.google.com",
   },
   {
-    name: "Test 8",
-    votes: 2,
-    cartoon_id: 3,
-    img_url: "www.google.com",
-  },
-  {
-    name: "Test 9",
+    name: "X Test 9",
     votes: 2,
     cartoon_id: 4,
     img_url: "www.google.com",
@@ -180,3 +182,5 @@ export const testCharacters = [
     img_url: "www.google.com",
   },
 ];
+
+export default testCharacters;

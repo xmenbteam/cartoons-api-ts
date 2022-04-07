@@ -1,6 +1,6 @@
 import { DB_Cartoon } from "../../../types/dataTypes";
 
-export const Cartoons: DB_Cartoon[] = [
+const cartoonsData: DB_Cartoon[] = [
   {
     name: "Dexter's Lab",
     votes: 6,
@@ -300,3 +300,5 @@ export const Cartoons: DB_Cartoon[] = [
     created_at: new Date(621730800000),
   },
 ];
+
+export default cartoonsData;

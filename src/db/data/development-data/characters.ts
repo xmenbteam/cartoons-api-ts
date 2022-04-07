@@ -1,4 +1,6 @@
-const characters = [
+import { DB_Character } from "../../../types/dataTypes";
+
+const charactersData: DB_Character[] = [
   {
     name: "Dexter",
     votes: 0,
@@ -1028,3 +1030,5 @@ const characters = [
       "https://thumbs.gfycat.com/EagerOpulentAllensbigearedbat-mobile.jpg",
   },
 ];
+
+export default charactersData;
