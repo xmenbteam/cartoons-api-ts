@@ -3,13 +3,13 @@
 interface DB_Object {
   name: String;
   votes: Number;
-  created_at: Date;
   description: String;
   img_url: String;
 }
 
 interface DB_Cartoon extends DB_Object {
   studio_id: Number;
+  created_at: Date;
 }
 
 interface DB_Character extends DB_Object {

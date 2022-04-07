@@ -93,7 +93,7 @@ export const Cartoons: DB_Cartoon[] = [
   {
     name: "The Smurfs",
     studio_id: 2,
-    votes: 0,
+    votes: -2,
     description:
       "The Smurfs (French: Les Schtroumpfs; Dutch: De Smurfen) is a Belgian comic franchise centered on a fictional colony of small, blue, humanoid creatures who live in mushroom-shaped houses in the forest. The Smurfs was first created and introduced as a series of comic characters by the Belgian comics artist Peyo (the pen name of Pierre Culliford) in 1958, wherein they were known as Les Schtroumpfs. There are more than 100 Smurf characters, and their names are based on adjectives that emphasise their characteristics, such as 'Jokey Smurf', who likes to play practical jokes on his fellow smurfs. 'Smurfette was the first female Smurf to be introduced in the series. The Smurfs wear Phrygian caps, which came to represent freedom during the modern era. The word “smurf” is the original Dutch translation of the French 'schtroumpf', which, according to Peyo, is a word he invented during a meal with fellow cartoonist André Franquin when he could not remember the word salt.",
     img_url:
@@ -113,7 +113,7 @@ export const Cartoons: DB_Cartoon[] = [
   {
     name: "Kim Possible",
     studio_id: 3,
-    votes: 0,
+    votes: 6,
     description:
       "Kim Possible is an American animated action comedy-adventure television series created by Bob Schooley and Mark McCorkle for Disney Channel. The title character is a teenage girl tasked with fighting crime on a regular basis while coping with everyday issues commonly associated with adolescence. Kim is aided by her clumsy best friend and eventual love interest, Ron Stoppable, his pet naked mole rat Rufus, and ten year-old computer genius Wade. Known collectively as Team Possible, Kim and Ron's missions primarily require them to thwart the evil plans of the mad scientist–supervillain duo Dr. Drakken and his sidekick Shego.",
     img_url:
