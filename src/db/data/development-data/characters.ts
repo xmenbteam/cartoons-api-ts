@@ -452,62 +452,74 @@ const characters = [
   {
     name: "Beavis",
     cartoon_id: 16,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/beavisandbutthead/images/9/93/Beavis-1.png/revision/latest/scale-to-width-down/534?cb=20120108001944",
   },
   {
     name: "Butt-Head",
     cartoon_id: 16,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/beavisandbutthead/images/b/b1/Butt-head.png/revision/latest?cb=20120108001808",
   },
   {
-    name: "Mr Manners",
+    name: "The Great Cornholio",
     cartoon_id: 16,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/beavisandbutthead/images/8/8d/CORNHOLIO_NEED_HIS_TP.jpg/revision/latest/scale-to-width-down/500?cb=20111118231614",
   },
   {
     name: "Stewart Stevenson",
     cartoon_id: 16,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/beavisandbutthead/images/7/7a/Stewart.jpeg/revision/latest?cb=20110910035309",
   },
   {
-    name: "Coach Buzzcut",
+    name: "David Van Driessen",
     cartoon_id: 16,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/beavisandbutthead/images/7/72/Beavis_he_said_anus.jpg/revision/latest?cb=20110922015543",
   },
   {
-    name: "Daria",
+    name: "Daria Morgendorffer",
     cartoon_id: 17,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/daria/images/d/de/Tumblr_lmpq9bwbyP1qj0esdo1_400.jpg/revision/latest/scale-to-width-down/210?cb=20110708181748",
   },
   {
     name: "Jane Lane",
     cartoon_id: 17,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/daria/images/8/83/Jane_Lane_by_Namelessv1.png/revision/latest/scale-to-width-down/210?cb=20110708183549",
   },
   {
-    name: "Helen",
+    name: "Jake Morgendorffer",
     cartoon_id: 17,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/daria/images/1/1a/Jake_Morgendorffer.jpg/revision/latest/scale-to-width-down/308?cb=20080629172317",
   },
   {
-    name: "Jake",
+    name: "Helen Morgendorffer",
     cartoon_id: 17,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/daria/images/6/60/Helen_Morgendorffer.jpg/revision/latest/scale-to-width-down/289?cb=20080625001727",
   },
   {
-    name: "Quinn",
+    name: "Quinn Morgendorffer",
     cartoon_id: 17,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/daria/images/8/8a/Quinn_morgendorffer.jpeg/revision/latest/scale-to-width-down/280?cb=20210322142159",
   },
   {
     name: "Ren Höek",
     cartoon_id: 18,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/renandstimpy/images/d/d3/IMG_3544.PNG/revision/latest/scale-to-width-down/176?cb=20181113190559",
   },
   {
     name: "Stimpson J. Cat",
     cartoon_id: 18,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/renandstimpy/images/b/b0/Stimpy2.png/revision/latest/scale-to-width-down/250?cb=20210901153925",
   },
   {
     name: "George Liquor",
@@ -517,289 +529,355 @@ const characters = [
   {
     name: "Powdered Toast Man",
     cartoon_id: 18,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/renandstimpy/images/b/b1/Powdered_toastman.png/revision/latest/scale-to-width-down/270?cb=20210815234811",
   },
   {
-    name: "Sammy Mantis",
+    name: "Magic Nose Goblins",
     cartoon_id: 18,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/renandstimpy/images/5/56/Magic_Nose_Goblins.png/revision/latest/scale-to-width-down/350?cb=20160201031120",
   },
   {
     name: "Bart",
     cartoon_id: 19,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/simpsons/images/6/65/Bart_Simpson.png/revision/latest/scale-to-width-down/250?cb=20190409004756",
   },
   {
     name: "Homer",
     cartoon_id: 19,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/simpsons/images/b/bd/Homer_Simpson.png/revision/latest/scale-to-width-down/300?cb=20201222215437",
   },
   {
-    name: "Bleeding Gums Murphy",
+    name: "Edna Krabappel",
     cartoon_id: 19,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/simpsons/images/7/76/Edna_Krabappel.png/revision/latest/scale-to-width-down/230?cb=20201223151255",
   },
   {
-    name: "Chief Wiggum",
+    name: "Clancy Wiggum",
     cartoon_id: 19,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/simpsons/images/0/0e/245px-Chief_Wiggum.png/revision/latest/scale-to-width-down/307?cb=20210701202009",
   },
   {
-    name: "Mr Burns",
+    name: "Charles Montgomery Burns",
     cartoon_id: 19,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/simpsons/images/a/a7/Montgomery_Burns.png/revision/latest/scale-to-width-down/326?cb=20210705202408",
   },
   {
     name: "Peter Parker",
     cartoon_id: 20,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/spiderman-animated/images/d/d7/679879769.PNG/revision/latest/scale-to-width-down/350?cb=20151112023228",
   },
   {
     name: "Mary Jane",
     cartoon_id: 20,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/spiderman-animated/images/6/6f/569879789.png/revision/latest/scale-to-width-down/350?cb=20150829155235",
   },
   {
     name: "Dr Octopus",
     cartoon_id: 20,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/spiderman-animated/images/4/41/689768978.PNG/revision/latest/scale-to-width-down/350?cb=20150904040133",
   },
   {
-    name: "Eddie Brock",
+    name: "Venom/Eddie Brock",
     cartoon_id: 20,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/spiderman-animated/images/0/09/76866732453.jpg/revision/latest/scale-to-width-down/350?cb=20150813165725",
   },
   {
-    name: "Dr Connors",
+    name: "Lizard/Dr Curtis Connors",
     cartoon_id: 20,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/spiderman-animated/images/6/6b/879909734.PNG/revision/latest/scale-to-width-down/350?cb=20160318010506",
   },
   {
     name: "Wolverine",
     cartoon_id: 21,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/marveldatabase/images/9/98/Wolverine_%28Logan%29_%28Earth-92131%29_X-Men_%2792_Vol_2_1_001.jpg/revision/latest/scale-to-width-down/350?cb=20160418185332",
   },
   {
     name: "Jubilee",
     cartoon_id: 21,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/marveldatabase/images/a/af/X-Men_%2792_Vol_1_1_Ant-Sized_Variant_%28Back_Cover%29_Textless.jpg/revision/latest/scale-to-width-down/317?cb=20160415185837",
   },
   {
     name: "Professor X",
     cartoon_id: 21,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/marveldatabase/images/d/df/Charles_Xavier_%28Earth-92131%29_from_X-Men_%2792_Vol_2_1_001.jpg/revision/latest/scale-to-width-down/344?cb=20160418213235",
   },
   {
     name: "Cyclops",
     cartoon_id: 21,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/marveldatabase/images/0/00/Scott_Summers_%28Earth-92131%29_from_X-Men_%2792_Vol_2_5_001.jpg/revision/latest/scale-to-width-down/241?cb=20160730011823",
   },
   {
     name: "Jean Grey",
     cartoon_id: 21,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/marveldatabase/images/f/ff/Jean_Grey_%28Earth-92131%29_from_Spider-Man_The_Animated_Series_Season_2_4_001.png/revision/latest/scale-to-width-down/350?cb=20111224122543",
   },
-  { name: "Fry", cartoon_id: 22, img_url: "" },
   {
-    name: "Leila",
+    name: "Fry",
     cartoon_id: 22,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/enfuturama/images/4/48/Philip_J._Fry_-_Official_Character_Promo.jpg/revision/latest/scale-to-width-down/300?cb=20211007115655",
+  },
+  {
+    name: "Leela",
+    cartoon_id: 22,
+    img_url:
+      "https://static.wikia.nocookie.net/enfuturama/images/2/2f/Turanga_Leela_-_Official_Character_Promo.jpg/revision/latest/scale-to-width-down/350?cb=20211007092538",
   },
   {
     name: "Zoidberg",
     cartoon_id: 22,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/enfuturama/images/f/f8/Doctor_John_A._Zoidberg_-_Official_Promo.jpg/revision/latest/scale-to-width-down/350?cb=20211007100117",
   },
   {
     name: "Bender",
     cartoon_id: 22,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/enfuturama/images/4/49/Bender_Bending_Rodr%C3%ADguez_-_Official_Character_Promo_1.jpg/revision/latest/scale-to-width-down/333?cb=20210907212302",
   },
   {
     name: "Amy Wong",
     cartoon_id: 22,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/enfuturama/images/d/db/Cast_futurama_amywong.jpg/revision/latest/scale-to-width-down/350?cb=20210809014748",
   },
   {
     name: "Hank Hill",
     cartoon_id: 23,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/kingofthehill/images/c/c4/Hank_Hill.png/revision/latest/scale-to-width-down/336?cb=20140504043948",
   },
   {
     name: "Luanne",
     cartoon_id: 23,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/kingofthehill/images/d/da/Luanne_Platter_-%29.jpg/revision/latest/scale-to-width-down/210?cb=20150524012912",
   },
   {
     name: "Dale Gribble",
     cartoon_id: 23,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/kingofthehill/images/a/a7/Dale_Gribble.png/revision/latest/scale-to-width-down/250?cb=20131231145446",
   },
   {
     name: "Bobby Hill",
     cartoon_id: 23,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/kingofthehill/images/c/c7/Bobby.png/revision/latest/scale-to-width-down/219?cb=20150524012917",
   },
   {
     name: "Peggy Hill",
     cartoon_id: 23,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/kingofthehill/images/a/a7/Peggy-hill.jpg/revision/latest/scale-to-width-down/350?cb=20190903170103",
   },
-  { name: "Bob", cartoon_id: 24, img_url: "" },
   {
-    name: "Linda",
+    name: "Bob Belcher",
     cartoon_id: 24,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/bobsburgerpedia/images/9/94/BobsBurgers_2019_KeyPoses_Bob_1.jpg/revision/latest/scale-to-width-down/240?cb=20210413150644",
   },
   {
-    name: "Tina",
+    name: "Linda Belcher",
     cartoon_id: 24,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/bobsburgerpedia/images/a/a0/BobsBurgers_2019_KeyPoses_Linda_2.jpg/revision/latest/scale-to-width-down/240?cb=20210413150648",
   },
   {
-    name: "Gene",
+    name: "Tina Belcher",
     cartoon_id: 24,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/bobsburgerpedia/images/7/72/BobsBurgers_2019_KeyPoses_Tina_2.jpg/revision/latest/scale-to-width-down/240?cb=20210413150655",
   },
   {
-    name: "Louise",
+    name: "Gene Belcher",
     cartoon_id: 24,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/bobsburgerpedia/images/b/b6/BobsBurgers_2019_KeyPoses_Gene_1.jpg/revision/latest/scale-to-width-down/240?cb=20210413150646",
   },
   {
-    name: "Spongebob",
+    name: "Louise Belcher",
+    cartoon_id: 24,
+    img_url:
+      "https://static.wikia.nocookie.net/bobsburgerpedia/images/c/c6/BobsBurgers_2019_KeyPoses_Louise_1.jpg/revision/latest/scale-to-width-down/240?cb=20210413150651",
+  },
+  {
+    name: "SpongeBob SquarePants",
     cartoon_id: 25,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/spongebob/images/d/d7/SpongeBob_stock_art.png/revision/latest/scale-to-width-down/350?cb=20190921125147",
   },
   {
-    name: "Patrick",
+    name: "Patrick Star",
     cartoon_id: 25,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/spongebob/images/5/5d/Patrick_stock_art.png/revision/latest/scale-to-width-down/350?cb=20210812083708",
   },
   {
-    name: "Squidward",
+    name: "Squidward Tentacles",
     cartoon_id: 25,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/spongebob/images/0/05/Squidward_stock_art.png/revision/latest/scale-to-width-down/350?cb=20190921125123",
   },
   {
-    name: "Mr. Krabs",
+    name: "Eugene H. Krabs",
     cartoon_id: 25,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/spongebob/images/7/7b/Krabs_artwork.png/revision/latest/scale-to-width-down/350?cb=20210916065112",
   },
   {
-    name: "Plankton",
+    name: "Sheldon J. Plankton",
     cartoon_id: 25,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/spongebob/images/7/77/Plankton_stock_art.png/revision/latest/scale-to-width-down/350?cb=20210916065141",
   },
   {
-    name: "Tommy",
+    name: "Tommy Pickles",
     cartoon_id: 26,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/rugrats/images/e/e4/Tommy_Pickles.png/revision/latest/scale-to-width-down/150?cb=20180820145552",
   },
   {
-    name: "Angelica",
+    name: "Angelica Pickles",
     cartoon_id: 26,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/rugrats/images/1/19/Angelica_Pickles.png/revision/latest/scale-to-width-down/200?cb=20130515182442",
   },
   {
-    name: "Chuckie",
+    name: "Chuckie Finster",
     cartoon_id: 26,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/rugrats/images/a/ad/Chuckie_Finster.png/revision/latest/scale-to-width-down/200?cb=20210620183002",
   },
   {
-    name: "Susie",
+    name: "Susie Carmichael",
     cartoon_id: 26,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/rugrats/images/f/f1/Susie_Carmichael.png/revision/latest/scale-to-width-down/250?cb=20130515193955",
   },
-  { name: "Lil", cartoon_id: 26, img_url: "" },
   {
-    name: "Doug",
+    name: "Kimi Finster",
+    cartoon_id: 26,
+    img_url:
+      "https://static.wikia.nocookie.net/rugrats/images/d/d5/Kimi_Finster2.png/revision/latest/scale-to-width-down/150?cb=20150814063805",
+  },
+  {
+    name: "Doug Funnie",
     cartoon_id: 27,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/doug/images/a/a5/Doug_Funnie2.png/revision/latest/scale-to-width-down/350?cb=20180531191407",
   },
   {
-    name: "Patti",
+    name: "Patti Mayonnaise",
     cartoon_id: 27,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/doug/images/1/1e/Patti_Mayonnaise.png/revision/latest/scale-to-width-down/262?cb=20180531190606",
   },
   {
-    name: "Skeeter",
+    name: "Skeeter Valentine",
     cartoon_id: 27,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/doug/images/5/58/Skeeter2.png/revision/latest/scale-to-width-down/136?cb=20180531190914",
   },
   {
-    name: "Roger",
+    name: "Roger Klotz",
     cartoon_id: 27,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/doug/images/5/53/Roger_Klotz.png/revision/latest/scale-to-width-down/292?cb=20181031044625",
   },
   {
-    name: "Theda",
+    name: "Judy Funnie",
     cartoon_id: 27,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/doug/images/1/1b/Judy_Funnie_.png/revision/latest/scale-to-width-down/230?cb=20181031044821",
   },
   {
-    name: "Arnold",
+    name: "Arnold Shortman",
     cartoon_id: 28,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/heyarnold/images/c/c0/Arnold2.png/revision/latest/scale-to-width-down/350?cb=20190816101509",
   },
   {
-    name: "Helga",
+    name: "Helga G. Pataki",
     cartoon_id: 28,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/heyarnold/images/e/e5/Helga_Pataki.png/revision/latest/scale-to-width-down/266?cb=20210830171639",
   },
   {
-    name: "Gerald",
+    name: "Gerald Johanssen",
     cartoon_id: 28,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/heyarnold/images/9/9c/GeraldShow.png/revision/latest/scale-to-width-down/319?cb=20181027162223",
   },
   {
-    name: "Phil",
+    name: "Grandpa Phil",
     cartoon_id: 28,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/heyarnold/images/7/79/GrandpaPhil.png/revision/latest/scale-to-width-down/300?cb=20160924030436",
   },
   {
-    name: "Gertrude",
+    name: "Stella Shortman",
     cartoon_id: 28,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/heyarnold/images/f/fa/Stella.jpg/revision/latest/scale-to-width-down/255?cb=20101225143956",
   },
   {
-    name: "Trommy Turner",
+    name: "Timmy Turner",
     cartoon_id: 29,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/fairlyoddparents/images/2/2c/New_Timmy_Stock.png/revision/latest/scale-to-width-down/200?cb=20200127001833&path-prefix=en",
   },
   {
-    name: "Trixie",
+    name: "Cosmo Julius Cosma",
     cartoon_id: 29,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/fairlyoddparents/images/e/ed/Cosmo_image.png/revision/latest/scale-to-width-down/230?cb=20200709204533&path-prefix=en",
   },
   {
-    name: "Mr Crocker",
+    name: "Wanda",
     cartoon_id: 29,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/fairlyoddparents/images/d/d5/WandaFOP.png/revision/latest/scale-to-width-down/200?cb=20211109033400&path-prefix=en",
   },
   {
-    name: "Vicky",
+    name: "Sparky",
     cartoon_id: 29,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/fairlyoddparents/images/8/87/SparkyHQ.png/revision/latest/scale-to-width-down/220?cb=20191212154610&path-prefix=en",
   },
   {
     name: "The Crimson Chin",
     cartoon_id: 29,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/fairlyoddparents/images/a/ad/CrimsonChin.png/revision/latest/scale-to-width-down/200?cb=20191124155102&path-prefix=en",
   },
   {
     name: "Penny",
     cartoon_id: 30,
-    img_url: "",
+    img_url:
+      "https://static.wikia.nocookie.net/p__/images/8/85/Penny_Crayon_photo.jpg/revision/latest/scale-to-width-down/180?cb=20150824023358&path-prefix=protagonist",
   },
   {
     name: "Dennis",
     cartoon_id: 30,
-    img_url: "",
-  },
-  {
-    name: "Cousin Tara",
-    cartoon_id: 30,
-    img_url: "",
+    img_url:
+      "https://thumbs.gfycat.com/EagerOpulentAllensbigearedbat-mobile.jpg",
   },
 ];

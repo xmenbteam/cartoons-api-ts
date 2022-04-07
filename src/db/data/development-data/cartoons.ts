@@ -257,7 +257,7 @@ export const Cartoons: DB_Cartoon[] = [
     description:
       "Rugrats is an American animated television series created by Arlene Klasky, Gábor Csupó, and Paul Germain for Nickelodeon. The show focuses on a group of toddlers most prominently—Tommy, Chuckie, Angelica, and twins Phil and Lil—and their day-to-day lives, usually involving life experiences that become much greater adventures in the imaginations of the main characters.",
     img_url: "https://upload.wikimedia.org/wikipedia/en/6/66/Rugrats_logo.png",
-    created_at: "681865200000",
+    created_at: new Date(681865200000),
   },
   {
     name: "Doug",
@@ -270,27 +270,33 @@ export const Cartoons: DB_Cartoon[] = [
     created_at: new Date(681865200000),
   },
   {
-    name: " Hey Arnold!",
+    name: "Hey Arnold!",
     studio_id: 6,
     votes: 0,
-    description: "",
-    img_url: "",
-    created_at: "",
+    description:
+      "Hey Arnold! is an American animated comedy television series created by Craig Bartlett. It originally aired on Nickelodeon from October 7, 1996, to June 8, 2004. The show centers on a fourth grader named Arnold Shortman, who lives with his grandparents in an inner-city tenement in Hillwood, Washington. Episodes center on his experiences navigating urban life while dealing with the problems he and his friends encounter. Many episodes however, focuses on other characters, including major, secondary, supporting, and even minor characters get their own episodes.",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Hey_Arnold%21_logo.svg/250px-Hey_Arnold%21_logo.svg.png",
+    created_at: new Date(844642800000),
   },
   {
     name: "Fairly Odd Parents",
     studio_id: 6,
     votes: 0,
-    description: "",
-    img_url: "",
-    created_at: "",
+    description:
+      "The Fairly OddParents is an American animated television series created by Butch Hartman for Nickelodeon. The series follows and describes the adventures of Timmy Turner, a 10-year-old boy with two fairy godparents named Cosmo and Wanda who grant him wishes to solve his everyday problems.",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/5/55/The_Fairly_OddParents_logo.svg/250px-The_Fairly_OddParents_logo.svg.png",
+    created_at: new Date(985906800000),
   },
   {
     name: "Penny Crayon",
     studio_id: 7,
     votes: 0,
-    description: "",
-    img_url: "",
-    created_at: "",
+    description:
+      "Penny Crayon is a 1989 British children's television series that tells the adventures of a very intellectual and well-meaning (but occasionally mischievous) school-girl from London who loves to draw, and her escapades accompanied by her best friend, Dennis. Using the magic crayons that she always carries with her, she brings everything that she ever draws to life, to either help them on their adventures or to get them out of tricky situations, and usually creating a world of chaos until it is either erased or washed away.",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Penny_Crayon_%28animation%29_titlecard.jpg/250px-Penny_Crayon_%28animation%29_titlecard.jpg",
+    created_at: new Date(621730800000),
   },
 ];
