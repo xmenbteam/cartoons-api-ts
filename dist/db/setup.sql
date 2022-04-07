@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS cartoons_test;
-DROP DATABASE IF EXISTS cartoons;
+DROP DATABASE IF EXISTS cartoons_db_test;
+DROP DATABASE IF EXISTS cartoons_db;
 
-CREATE DATABASE cartoons_test;
-CREATE DATABASE cartoons;
+CREATE DATABASE cartoons_db_test;
+CREATE DATABASE cartoons_db;
