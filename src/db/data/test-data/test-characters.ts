@@ -20,7 +20,7 @@ const testCharacters: DB_Character[] = [
     img_url: "www.google.com",
   },
   {
-    name: " D Test 4",
+    name: "D Test 4",
     votes: 35,
     cartoon_id: 2,
     img_url: "www.google.com",
