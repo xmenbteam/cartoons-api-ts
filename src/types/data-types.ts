@@ -20,6 +20,10 @@ interface DB_Studio extends DB_Object {
   description: string;
 }
 
+interface Returned_Studio extends DB_Studio {
+  studio_id: number;
+}
+
 type DB_User = {
   username: string;
   name: string;
@@ -50,4 +54,5 @@ export {
   DB_Studio,
   DB_User,
   SeedData,
+  Returned_Studio,
 };

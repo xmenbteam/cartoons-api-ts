@@ -49,3 +49,34 @@ describe("Welcome", () => {
         expect(body.msg).toBe(message);
     }));
 });
+describe("Studios", () => {
+    describe("GET studios", () => {
+        test("200 - GET all studios", () => __awaiter(void 0, void 0, void 0, function* () {
+            const { body } = yield (0, supertest_1.default)(app).get("/api/studios").expect(200);
+            const { studios } = body;
+            expect(Array.isArray(studios)).toBe(true);
+            expect(studios.length).toBe(3);
+            studios.forEach((studio) => {
+                expect(studio).toEqual(expect.objectContaining({
+                    studio_id: expect.any(Number),
+                    name: expect.any(String),
+                    img_url: expect.any(String),
+                    description: expect.any(String),
+                    votes: expect.any(Number),
+                }));
+            });
+        }));
+        test("200 - GET studio by id", () => __awaiter(void 0, void 0, void 0, function* () {
+            const id = 1;
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/studios/${id}`);
+            const { studios } = body;
+            expect(studios).toEqual({
+                studio_id: 1,
+                name: "Studio 1",
+                img_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cartoon_Network_2010_logo.svg/200px-Cartoon_Network_2010_logo.svg.png",
+                description: "Great",
+                votes: 3,
+            });
+        }));
+    });
+});
