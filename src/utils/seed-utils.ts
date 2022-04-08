@@ -4,13 +4,13 @@ import {
   DB_Comment,
   DB_Studio,
   DB_User,
-} from "../types/dataTypes";
+} from "../types/data-types";
 
 export const userDataFormatter = (userData: DB_User[]) =>
   userData.map(({ username, name, avatar_url }) => [
     username,
-    name,
     avatar_url,
+    name,
   ]);
 
 export const studioDataFormatter = (studioData: DB_Studio[]) =>
@@ -43,9 +43,9 @@ export const characterDataFormatter = (characterData: DB_Character[]) =>
 
 export const commentsDataFormatter = (commentsData: DB_Comment[]) =>
   commentsData.map(({ body, votes, author, cartoon_id, created_at }) => [
-    body,
     votes,
     author,
     cartoon_id,
+    body,
     created_at,
   ]);

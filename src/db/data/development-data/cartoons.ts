@@ -1,4 +1,4 @@
-import { DB_Cartoon } from "../../../types/dataTypes";
+import { DB_Cartoon } from "../../../types/data-types";
 
 const cartoonsData: DB_Cartoon[] = [
   {

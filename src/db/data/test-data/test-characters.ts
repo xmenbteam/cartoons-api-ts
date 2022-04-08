@@ -1,4 +1,4 @@
-import { DB_Character } from "../../../types/dataTypes";
+import { DB_Character } from "../../../types/data-types";
 
 const testCharacters: DB_Character[] = [
   {

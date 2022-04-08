@@ -1,4 +1,4 @@
-import { DB_Studio } from "../../../types/dataTypes";
+import { DB_Studio } from "../../../types/data-types";
 
 const testStudios: DB_Studio[] = [
   {

@@ -1,4 +1,4 @@
-import { DB_User } from "../../../types/dataTypes";
+import { DB_User } from "../../../types/data-types";
 
 const testUserData: DB_User[] = [
   {

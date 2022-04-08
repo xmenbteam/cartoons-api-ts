@@ -1414,7 +1414,7 @@ const commentsData = [
 ];
 exports.default = commentsData;
 const newData = commentsData.map((comment) => {
-    return Object.assign(Object.assign({}, comment), { created_at: new Date(Number(comment.created_at)) });
+    return Object.assign(Object.assign({}, comment), { created_at: Number(comment.created_at) });
 });
 const newDataWriter = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, promises_1.writeFile)("./src/db/data/development-data/comments.ts", JSON.stringify(newData), "utf-8");

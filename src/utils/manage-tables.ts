@@ -23,6 +23,7 @@ const createTables = async () => {
   (
       studio_id SERIAL PRIMARY KEY NOT NULL,
       name VARCHAR(255) NOT NULL,
+      img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg',
       description VARCHAR NOT NULL,
       votes INT DEFAULT 0
   )
@@ -67,6 +68,7 @@ const createTables = async () => {
       FOREIGN KEY (author) REFERENCES users(username) ON DELETE CASCADE,
       cartoon_id INT NOT NULL,
       FOREIGN KEY (cartoon_id) REFERENCES cartoons(cartoon_id) ON DELETE CASCADE,
+      body TEXT,
       created_at TIMESTAMP DEFAULT NOW()
   )
   `);

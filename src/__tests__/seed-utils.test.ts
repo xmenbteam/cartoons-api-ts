@@ -4,7 +4,7 @@ import {
   DB_Comment,
   DB_Studio,
   DB_User,
-} from "../types/dataTypes";
+} from "../types/data-types";
 import {
   cartoonDataFormatter,
   characterDataFormatter,

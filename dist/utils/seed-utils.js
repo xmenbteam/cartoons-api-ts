@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.commentsDataFormatter = exports.characterDataFormatter = exports.cartoonDataFormatter = exports.studioDataFormatter = exports.userDataFormatter = void 0;
 const userDataFormatter = (userData) => userData.map(({ username, name, avatar_url }) => [
     username,
-    name,
     avatar_url,
+    name,
 ]);
 exports.userDataFormatter = userDataFormatter;
 const studioDataFormatter = (studioData) => studioData.map(({ name, img_url, description, votes }) => [
@@ -31,10 +31,10 @@ const characterDataFormatter = (characterData) => characterData.map(({ name, vot
 ]);
 exports.characterDataFormatter = characterDataFormatter;
 const commentsDataFormatter = (commentsData) => commentsData.map(({ body, votes, author, cartoon_id, created_at }) => [
-    body,
     votes,
     author,
     cartoon_id,
+    body,
     created_at,
 ]);
 exports.commentsDataFormatter = commentsDataFormatter;

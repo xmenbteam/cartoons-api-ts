@@ -29,7 +29,7 @@ type DB_User = {
 type DB_Comment = {
   body: String;
   author: String;
-  created_at: String;
+  created_at: Date;
   votes: Number;
   cartoon_id: Number;
 };

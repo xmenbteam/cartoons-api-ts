@@ -294,7 +294,7 @@ const testComments = [
 ];
 exports.default = testComments;
 const newData = testComments.map((comment) => {
-    return Object.assign(Object.assign({}, comment), { created_at: new Date(Number(comment.created_at)) });
+    return Object.assign(Object.assign({}, comment), { created_at: Number(comment.created_at) });
 });
 console.log(newData);
 const newDataWriter = () => __awaiter(void 0, void 0, void 0, function* () {
