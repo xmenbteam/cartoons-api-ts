@@ -70,12 +70,12 @@ const createTables = () => __awaiter(void 0, void 0, void 0, function* () {
   CREATE TABLE comments 
   (
       comment_id SERIAL PRIMARY KEY NOT NULL,
-      votes INT DEFAULT 0,
       author VARCHAR(255) NOT NULL,
       FOREIGN KEY (author) REFERENCES users(username) ON DELETE CASCADE,
       cartoon_id INT NOT NULL,
       FOREIGN KEY (cartoon_id) REFERENCES cartoons(cartoon_id) ON DELETE CASCADE,
       body TEXT,
+      votes INT DEFAULT 0,
       created_at TIMESTAMP DEFAULT NOW()
   )
   `);

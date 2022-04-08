@@ -61,11 +61,11 @@ describe("commentsDataFormatter", () => {
     test("works", () => {
         const input = [
             {
-                body: "massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur",
-                votes: -46,
                 author: "jadelandeg",
                 cartoon_id: 18,
-                created_at: "2021-07-16T13:33:01.000Z",
+                body: "massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur",
+                votes: -46,
+                created_at: new Date(793756880000),
             },
         ];
         const actual = (0, seed_utils_1.commentsDataFormatter)(input);

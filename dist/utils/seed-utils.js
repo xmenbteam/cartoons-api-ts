@@ -31,10 +31,10 @@ const characterDataFormatter = (characterData) => characterData.map(({ name, vot
 ]);
 exports.characterDataFormatter = characterDataFormatter;
 const commentsDataFormatter = (commentsData) => commentsData.map(({ body, votes, author, cartoon_id, created_at }) => [
-    votes,
     author,
     cartoon_id,
     body,
+    votes,
     created_at,
 ]);
 exports.commentsDataFormatter = commentsDataFormatter;

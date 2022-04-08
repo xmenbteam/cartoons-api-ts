@@ -5,15 +5,24 @@ import {
   DB_Studio,
   DB_User,
 } from "../types/data-types";
+import {
+  formattedCartoonData,
+  formattedCharacterData,
+  formattedCommentData,
+  formattedStudioData,
+  formattedUserData,
+} from "../types/formatted-data-tuples";
 
-export const userDataFormatter = (userData: DB_User[]) =>
+export const userDataFormatter = (userData: DB_User[]): formattedUserData[] =>
   userData.map(({ username, name, avatar_url }) => [
     username,
     avatar_url,
     name,
   ]);
 
-export const studioDataFormatter = (studioData: DB_Studio[]) =>
+export const studioDataFormatter = (
+  studioData: DB_Studio[]
+): formattedStudioData[] =>
   studioData.map(({ name, img_url, description, votes }) => [
     name,
     img_url,
@@ -21,7 +30,9 @@ export const studioDataFormatter = (studioData: DB_Studio[]) =>
     votes,
   ]);
 
-export const cartoonDataFormatter = (cartoonData: DB_Cartoon[]) =>
+export const cartoonDataFormatter = (
+  cartoonData: DB_Cartoon[]
+): formattedCartoonData[] =>
   cartoonData.map(
     ({ name, votes, created_at, description, img_url, studio_id }) => [
       name,
@@ -33,7 +44,9 @@ export const cartoonDataFormatter = (cartoonData: DB_Cartoon[]) =>
     ]
   );
 
-export const characterDataFormatter = (characterData: DB_Character[]) =>
+export const characterDataFormatter = (
+  characterData: DB_Character[]
+): formattedCharacterData[] =>
   characterData.map(({ name, votes, cartoon_id, img_url }) => [
     name,
     votes,
@@ -41,11 +54,13 @@ export const characterDataFormatter = (characterData: DB_Character[]) =>
     img_url,
   ]);
 
-export const commentsDataFormatter = (commentsData: DB_Comment[]) =>
+export const commentsDataFormatter = (
+  commentsData: DB_Comment[]
+): formattedCommentData[] =>
   commentsData.map(({ body, votes, author, cartoon_id, created_at }) => [
-    votes,
     author,
     cartoon_id,
     body,
+    votes,
     created_at,
   ]);

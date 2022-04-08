@@ -1,19 +1,19 @@
 // Studio === DB_Object
 
 interface DB_Object {
-  name: String;
-  votes: Number;
-  img_url: String;
+  name: string;
+  votes: number;
+  img_url: string;
 }
 
 interface DB_Cartoon extends DB_Object {
-  description: String;
-  studio_id: Number;
+  description: string;
+  studio_id: number;
   created_at: Date;
 }
 
 interface DB_Character extends DB_Object {
-  cartoon_id: Number;
+  cartoon_id: number;
 }
 
 interface DB_Studio extends DB_Object {
@@ -27,11 +27,11 @@ type DB_User = {
 };
 
 type DB_Comment = {
-  body: String;
-  author: String;
+  body: string;
+  author: string;
   created_at: Date;
-  votes: Number;
-  cartoon_id: Number;
+  votes: number;
+  cartoon_id: number;
 };
 
 export { DB_Object, DB_Cartoon, DB_Character, DB_Comment, DB_Studio, DB_User };
