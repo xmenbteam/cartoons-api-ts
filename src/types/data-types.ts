@@ -34,4 +34,20 @@ type DB_Comment = {
   cartoon_id: number;
 };
 
-export { DB_Object, DB_Cartoon, DB_Character, DB_Comment, DB_Studio, DB_User };
+type SeedData = {
+  studiosData: DB_Studio[];
+  usersData: DB_User[];
+  commentsData: DB_Comment[];
+  charactersData: DB_Character[];
+  cartoonsData: DB_Cartoon[];
+};
+
+export {
+  DB_Object,
+  DB_Cartoon,
+  DB_Character,
+  DB_Comment,
+  DB_Studio,
+  DB_User,
+  SeedData,
+};

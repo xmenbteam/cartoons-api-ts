@@ -23,7 +23,6 @@ const dropTables = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.dropTables = dropTables;
 const createTables = () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Creating users...");
     const createUsers = yield connection_1.default.query(`
   CREATE TABLE users
   (username VARCHAR(255) PRIMARY KEY NOT NULL,
@@ -41,7 +40,6 @@ const createTables = () => __awaiter(void 0, void 0, void 0, function* () {
   )
   `);
     yield Promise.all([createUsers, createStudios]);
-    console.log("YESSS");
     yield connection_1.default.query(`
   CREATE TABLE cartoons
   (

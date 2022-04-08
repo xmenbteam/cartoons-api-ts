@@ -9,8 +9,6 @@ const dropTables = async () => {
 };
 
 const createTables = async () => {
-  console.log("Creating users...");
-
   const createUsers = await db.query(`
   CREATE TABLE users
   (username VARCHAR(255) PRIMARY KEY NOT NULL,
@@ -30,8 +28,6 @@ const createTables = async () => {
   `);
 
   await Promise.all([createUsers, createStudios]);
-
-  console.log("YESSS");
 
   await db.query(`
   CREATE TABLE cartoons

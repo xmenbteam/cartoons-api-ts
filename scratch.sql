@@ -1,3 +1,3 @@
-\c cartoons_db_test;
+\c cartoons_db;
 
-SELECT * FROM cartoons;
+SELECT * FROM characters WHERE cartoon_id = 4;
