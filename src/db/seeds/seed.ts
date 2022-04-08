@@ -20,8 +20,6 @@ export const seed = async ({
   await dropTables();
   await createTables();
 
-  console.log("Studios...");
-
   const insertIntoStudios = format(
     `
   INSERT INTO studios
@@ -35,8 +33,6 @@ export const seed = async ({
 
   const studiosQuery = await db.query(insertIntoStudios);
   const studios = studiosQuery.rows;
-
-  console.log("Users...");
 
   const insertIntoUsers = format(
     `
@@ -53,8 +49,6 @@ export const seed = async ({
   const users = usersQuery.rows;
 
   await Promise.all([studios, users]);
-
-  console.log("Cartoons...");
 
   const insertIntoCartoons = format(
     `
@@ -76,8 +70,6 @@ export const seed = async ({
 
   await db.query(insertIntoCartoons).then(({ rows }) => rows);
 
-  console.log("Characters...");
-
   const insertIntoCharacters = format(
     `
     INSERT INTO characters
@@ -96,8 +88,6 @@ export const seed = async ({
 
   await db.query(insertIntoCharacters).then(({ rows }) => rows);
 
-  console.log("Comments...");
-
   const insertIntoComments = format(
     `
 INSERT INTO comments
@@ -114,7 +104,5 @@ RETURNING *;
 `,
     commentsDataFormatter(commentsData)
   );
-
-  console.log("DONE");
   return db.query(insertIntoComments).then(({ rows }) => rows);
 };

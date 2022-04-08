@@ -1,6 +1,6 @@
 import { DB_User } from "../../../types/data-types";
 
-const testUserData: DB_User[] = [
+const usersData: DB_User[] = [
   {
     username: "xmenbteam",
     name: "sam",
@@ -27,4 +27,4 @@ const testUserData: DB_User[] = [
   },
 ];
 
-export default testUserData;
+export default usersData;

@@ -1,6 +1,6 @@
 import { DB_Studio } from "../../../types/data-types";
 
-const testStudios: DB_Studio[] = [
+const studiosData: DB_Studio[] = [
   {
     name: "Studio 1",
     img_url:
@@ -23,4 +23,4 @@ const testStudios: DB_Studio[] = [
     votes: 7,
   },
 ];
-export default testStudios;
+export default studiosData;

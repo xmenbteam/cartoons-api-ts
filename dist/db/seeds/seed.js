@@ -20,7 +20,6 @@ const connection_1 = __importDefault(require("../connection"));
 const seed = ({ studiosData, usersData, commentsData, charactersData, cartoonsData, }) => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, manage_tables_1.dropTables)();
     yield (0, manage_tables_1.createTables)();
-    console.log("Studios...");
     const insertIntoStudios = (0, pg_format_1.default)(`
   INSERT INTO studios
   (name, img_url, description, votes)
@@ -30,7 +29,6 @@ const seed = ({ studiosData, usersData, commentsData, charactersData, cartoonsDa
   `, (0, seed_utils_1.studioDataFormatter)(studiosData));
     const studiosQuery = yield connection_1.default.query(insertIntoStudios);
     const studios = studiosQuery.rows;
-    console.log("Users...");
     const insertIntoUsers = (0, pg_format_1.default)(`
   INSERT INTO users
   (username, name, avatar_url)
@@ -41,7 +39,6 @@ const seed = ({ studiosData, usersData, commentsData, charactersData, cartoonsDa
     const usersQuery = yield connection_1.default.query(insertIntoUsers);
     const users = usersQuery.rows;
     yield Promise.all([studios, users]);
-    console.log("Cartoons...");
     const insertIntoCartoons = (0, pg_format_1.default)(`
   INSERT INTO cartoons
   (
@@ -57,7 +54,6 @@ const seed = ({ studiosData, usersData, commentsData, charactersData, cartoonsDa
   RETURNING *;
   `, (0, seed_utils_1.cartoonDataFormatter)(cartoonsData));
     yield connection_1.default.query(insertIntoCartoons).then(({ rows }) => rows);
-    console.log("Characters...");
     const insertIntoCharacters = (0, pg_format_1.default)(`
     INSERT INTO characters
     (
@@ -71,7 +67,6 @@ const seed = ({ studiosData, usersData, commentsData, charactersData, cartoonsDa
     RETURNING *;
     `, (0, seed_utils_1.characterDataFormatter)(charactersData));
     yield connection_1.default.query(insertIntoCharacters).then(({ rows }) => rows);
-    console.log("Comments...");
     const insertIntoComments = (0, pg_format_1.default)(`
 INSERT INTO comments
 (
@@ -85,7 +80,6 @@ VALUES
 %L
 RETURNING *;
 `, (0, seed_utils_1.commentsDataFormatter)(commentsData));
-    console.log("DONE");
     return connection_1.default.query(insertIntoComments).then(({ rows }) => rows);
 });
 exports.seed = seed;

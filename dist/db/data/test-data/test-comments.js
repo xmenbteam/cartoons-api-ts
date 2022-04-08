@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const testComments = [
+const commentsData = [
     {
         body: "elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus",
         votes: -98,
@@ -282,4 +282,4 @@ const testComments = [
         created_at: new Date(1644809973000),
     },
 ];
-exports.default = testComments;
+exports.default = commentsData;

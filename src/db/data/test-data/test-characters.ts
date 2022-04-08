@@ -1,6 +1,6 @@
 import { DB_Character } from "../../../types/data-types";
 
-const testCharacters: DB_Character[] = [
+const charactersData: DB_Character[] = [
   {
     name: "Test 1",
     votes: 2,
@@ -183,4 +183,4 @@ const testCharacters: DB_Character[] = [
   },
 ];
 
-export default testCharacters;
+export default charactersData;

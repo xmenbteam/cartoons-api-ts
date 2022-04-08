@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const testCharacters = [
+const charactersData = [
     {
         name: "Test 1",
         votes: 2,
@@ -182,4 +182,4 @@ const testCharacters = [
         img_url: "www.google.com",
     },
 ];
-exports.default = testCharacters;
+exports.default = charactersData;

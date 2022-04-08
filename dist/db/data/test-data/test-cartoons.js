@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const testCartoons = [
+const cartoonsData = [
     {
         name: "Test Cartoon 1",
         votes: 6,
@@ -82,4 +82,4 @@ const testCartoons = [
         studio_id: 3,
     },
 ];
-exports.default = testCartoons;
+exports.default = cartoonsData;

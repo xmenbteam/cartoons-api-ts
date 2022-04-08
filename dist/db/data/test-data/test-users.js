@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const testUserData = [
+const usersData = [
     {
         username: "xmenbteam",
         name: "sam",
@@ -22,4 +22,4 @@ const testUserData = [
         avatar_url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
     },
 ];
-exports.default = testUserData;
+exports.default = usersData;

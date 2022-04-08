@@ -1,6 +1,6 @@
 import { DB_Cartoon } from "../../../types/data-types";
 
-const testCartoons: DB_Cartoon[] = [
+const cartoonsData: DB_Cartoon[] = [
   {
     name: "Test Cartoon 1",
     votes: 6,
@@ -94,4 +94,4 @@ const testCartoons: DB_Cartoon[] = [
   },
 ];
 
-export default testCartoons;
+export default cartoonsData;

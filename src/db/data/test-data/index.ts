@@ -1,7 +1,7 @@
-import * as usersData from "./test-users";
-import * as cartoonsData from "./test-cartoons";
-import * as charatersData from "./test-characters";
-import * as commentsData from "./test-comments";
-import * as studiosData from "./test-studios";
+import charactersData from "./test-characters";
+import cartoonsData from "./test-cartoons";
+import commentsData from "./test-comments";
+import studiosData from "./test-studios";
+import usersData from "./test-users";
 
-export { usersData, cartoonsData, charatersData, commentsData, studiosData };
+export { studiosData, usersData, commentsData, charactersData, cartoonsData };

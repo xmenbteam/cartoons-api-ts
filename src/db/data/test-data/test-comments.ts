@@ -1,6 +1,6 @@
 import { DB_Comment } from "../../../types/data-types";
 
-const testComments: DB_Comment[] = [
+const commentsData: DB_Comment[] = [
   {
     body: "elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus",
     votes: -98,
@@ -282,4 +282,4 @@ const testComments: DB_Comment[] = [
     created_at: new Date(1644809973000),
   },
 ];
-export default testComments;
+export default commentsData;
