@@ -46,6 +46,12 @@ type SeedData = {
   cartoonsData: DB_Cartoon[];
 };
 
+type PostStudioBody = {
+  name: string;
+  img_url: string;
+  description: string;
+};
+
 export {
   DB_Object,
   DB_Cartoon,
@@ -55,4 +61,5 @@ export {
   DB_User,
   SeedData,
   Returned_Studio,
+  PostStudioBody,
 };

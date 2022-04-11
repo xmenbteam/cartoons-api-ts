@@ -4,7 +4,7 @@ exports.handle405s = exports.handleInvalidPaths = exports.handle500Errors = expo
 const handlePSQLErrors = (err, req, res, next) => {
     switch (err.code) {
         case "23502":
-            res.status(400).send({ msg: "Field cannot be null!", err });
+            res.status(400).send({ msg: `Field ${err.column} cannot be null!`, err });
         case "22P02":
             res.status(400).send({ msg: "Bad request!", err });
         case "23503":

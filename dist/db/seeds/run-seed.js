@@ -16,13 +16,18 @@ const connection_1 = __importDefault(require("../connection"));
 const seed_1 = require("./seed");
 const index_1 = require("../data/development-data/index");
 const runSeed = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, seed_1.seed)({
-        studiosData: index_1.studiosData,
-        usersData: index_1.usersData,
-        commentsData: index_1.commentsData,
-        charactersData: index_1.charactersData,
-        cartoonsData: index_1.cartoonsData,
-    });
-    yield connection_1.default.end();
+    try {
+        yield (0, seed_1.seed)({
+            studiosData: index_1.studiosData,
+            usersData: index_1.usersData,
+            commentsData: index_1.commentsData,
+            charactersData: index_1.charactersData,
+            cartoonsData: index_1.cartoonsData,
+        });
+        yield connection_1.default.end();
+    }
+    catch (err) {
+        console.log("-->", err, "<--");
+    }
 });
 runSeed();

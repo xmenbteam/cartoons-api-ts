@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getStudios = void 0;
+exports.deleteStudioById = exports.postStudio = exports.patchStudioById = exports.getStudioById = exports.getStudios = void 0;
 const studios_model_1 = require("../models/studios.model");
 const getStudios = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -21,3 +21,49 @@ const getStudios = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getStudios = getStudios;
+const getStudioById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { studio_id } = req.params;
+        const studio = yield (0, studios_model_1.fetchStudioById)(studio_id);
+        res.status(200).send({ studio });
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.getStudioById = getStudioById;
+const patchStudioById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { studio_id } = req.params;
+        const { inc_votes } = req.body;
+        const studio = yield (0, studios_model_1.updateStudioById)(studio_id, inc_votes);
+        res.status(200).send({ studio });
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.patchStudioById = patchStudioById;
+const postStudio = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { body } = req;
+        const { name, img_url, description } = body;
+        const studio = yield (0, studios_model_1.insertStudio)({ name, img_url, description });
+        res.status(201).send({ studio });
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.postStudio = postStudio;
+const deleteStudioById = ({ params }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { studio_id } = params;
+        yield (0, studios_model_1.removeStudioById)(studio_id);
+        res.status(204).send({ msg: "Studio deleted!" });
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.deleteStudioById = deleteStudioById;

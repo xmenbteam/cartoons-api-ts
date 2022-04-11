@@ -6,5 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const studios_controller_1 = require("../controllers/studios.controller");
 const studiosRouter = express_1.default.Router();
-studiosRouter.route("/").get(studios_controller_1.getStudios);
+studiosRouter.route("/").get(studios_controller_1.getStudios).post(studios_controller_1.postStudio);
+studiosRouter
+    .route("/:studio_id")
+    .get(studios_controller_1.getStudioById)
+    .patch(studios_controller_1.patchStudioById)
+    .delete(studios_controller_1.deleteStudioById);
 exports.default = studiosRouter;

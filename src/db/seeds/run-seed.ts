@@ -9,14 +9,18 @@ import {
 } from "../data/development-data/index";
 
 const runSeed = async () => {
-  await seed({
-    studiosData,
-    usersData,
-    commentsData,
-    charactersData,
-    cartoonsData,
-  });
-  await db.end();
+  try {
+    await seed({
+      studiosData,
+      usersData,
+      commentsData,
+      charactersData,
+      cartoonsData,
+    });
+    await db.end();
+  } catch (err) {
+    console.log("-->", err, "<--");
+  }
 };
 
 runSeed();
