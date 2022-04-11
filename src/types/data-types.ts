@@ -77,6 +77,10 @@ type FetchCartoonParams = {
   page?: number;
 };
 
+interface FetchCharacterParams extends FetchCartoonParams {
+  cartoon_id?: number;
+}
+
 type PostCartoonParams = {
   name: string;
   description: string;
@@ -111,5 +115,6 @@ export {
   Returned_User,
   FetchStudioParams,
   FetchCartoonParams,
+  FetchCharacterParams,
   PostStudioBody,
 };

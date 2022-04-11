@@ -446,3 +446,16 @@ describe("Cartoons", () => {
     });
   });
 });
+
+describe("Characters", () => {
+  describe("GET Characters", () => {
+    test("200 - GET all characters", async () => {
+      const { body } = await request(app).get("/api/characters").expect(200);
+
+      const { characters } = body;
+
+      expect(Array.isArray(characters.characters)).toBe(true);
+      expect(characters.characters.length).toBe(30);
+    });
+  });
+});
