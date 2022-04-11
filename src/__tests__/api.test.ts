@@ -2,7 +2,7 @@ import { seed } from "../db/seeds/seed";
 import * as testData from "../db/data/test-data/index";
 import request from "supertest";
 import db from "../db/connection";
-import { DB_Studio, Returned_Studio } from "../types/data-types";
+import { DB_Studio, Returned_Studio, Returned_User } from "../types/data-types";
 
 const app = require("../app");
 
@@ -15,6 +15,81 @@ describe("Welcome", () => {
     const message =
       "Welcome to the cartoons API! Go to /api to see possible endpoints!";
     expect(body.msg).toBe(message);
+  });
+});
+
+describe("Users", () => {
+  describe("GET users", () => {
+    test("200 - Get all users", async () => {
+      const { body } = await request(app).get("/api/users").expect(200);
+      const { users } = body;
+      expect(Array.isArray(users)).toBe(true);
+      expect(users.length).toBe(4);
+      users.forEach((user: Returned_User) => {
+        expect(user).toEqual(
+          expect.objectContaining({
+            username: expect.any(String),
+            name: expect.any(String),
+            avatar_url: expect.any(String),
+          })
+        );
+      });
+    });
+    test("200 - get user by username", async () => {
+      const username = "xmenbteam";
+      const { body } = await request(app)
+        .get(`/api/users/${username}`)
+        .expect(200);
+      const { user } = body;
+      console.timeLog(user);
+      expect(user).toEqual({
+        username: "xmenbteam",
+        name: "sam",
+        avatar_url:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+      });
+    });
+    test("404 - user not found", async () => {
+      const username = "cheese";
+      const { body } = await request(app)
+        .get(`/api/users/${username}`)
+        .expect(404);
+
+      const { msg } = body;
+      expect(msg).toBe("User not found!");
+    });
+  });
+  describe("POST Owner", () => {
+    test("201 - post new user", async () => {
+      const newUser = {
+        name: "Testy McTestFace",
+        username: "testlington",
+        avatar_url: "www.test.com",
+      };
+      const { body } = await request(app)
+        .post(`/api/users`)
+        .send(newUser)
+        .expect(201);
+
+      const { user } = body;
+
+      expect(user).toEqual(newUser);
+    });
+    test("400 - blank field", async () => {
+      const newUser = {
+        name: "Testy McTestFace",
+        //  username: "testlington",
+        avatar_url: "www.test.com",
+      };
+      const { body } = await request(app)
+        .post(`/api/users`)
+        .send(newUser)
+        .expect(400);
+
+      const { msg } = body;
+
+      expect(msg).toBe("Field username cannot be null!");
+    });
   });
 });
 

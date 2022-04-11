@@ -16,8 +16,8 @@ import {
 export const userDataFormatter = (userData: DB_User[]): formattedUserData[] =>
   userData.map(({ username, name, avatar_url }) => [
     username,
-    avatar_url,
     name,
+    avatar_url,
   ]);
 
 export const studioDataFormatter = (

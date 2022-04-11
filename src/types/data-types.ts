@@ -52,6 +52,10 @@ type PostStudioBody = {
   description: string;
 };
 
+interface Returned_User extends DB_User {
+  user_id: number;
+}
+
 export {
   DB_Object,
   DB_Cartoon,
@@ -61,5 +65,6 @@ export {
   DB_User,
   SeedData,
   Returned_Studio,
+  Returned_User,
   PostStudioBody,
 };
