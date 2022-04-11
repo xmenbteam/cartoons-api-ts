@@ -1,18 +1,69 @@
 import db from "../db/connection";
-import { PostStudioBody, Returned_Studio } from "../types/data-types";
+import {
+  FetchStudioParams,
+  PostStudioBody,
+  Returned_Studio,
+  Returned_Studio_Object,
+} from "../types/data-types";
+import { orderByValues, sortByValues } from "../utils/query-utils";
+import { checkIfValid, pageOffsetCalc } from "../utils/util-functions";
 
-export const fetchStudios = async (): Promise<Returned_Studio[]> => {
-  let query = `SELECT * FROM studios`;
+export const fetchStudios = async ({
+  sort_by = "studio_id",
+  order_by = "asc",
+  limit = 10,
+  page = 1,
+}: FetchStudioParams): Promise<Returned_Studio_Object> => {
+  const offset = pageOffsetCalc(page, limit);
+  const values = [limit, offset];
 
-  const studios = await db.query(query);
+  if (!checkIfValid(sort_by, sortByValues)) {
+    return Promise.reject({
+      status: 400,
+      msg: `Invalid sort_by query: ${sort_by}`,
+    });
+  }
 
-  return studios.rows;
+  if (!checkIfValid(order_by, orderByValues)) {
+    return Promise.reject({
+      status: 400,
+      msg: `Invalid order_by query: ${order_by}`,
+    });
+  }
+
+  let query = `SELECT studios.*, COUNT(cartoons.studio_id) :: INT AS cartoon_count,
+  COUNT(*) OVER() :: INT AS full_count  
+  FROM studios
+  LEFT JOIN cartoons ON cartoons.studio_id = studios.studio_id
+  GROUP BY studios.studio_id
+  ORDER BY ${sort_by} ${order_by}
+  LIMIT $1 OFFSET $2
+  `;
+
+  const response = await db.query(query, values);
+
+  const studios = response.rows;
+
+  const totalStudiosObject = {
+    studios,
+    currentPage: page,
+    studiosPerPage: limit,
+    pageTotal: Math.ceil(studios[0].full_count / limit),
+  };
+
+  return totalStudiosObject;
 };
 
 export const fetchStudioById = async (
   studio_id: string
 ): Promise<Returned_Studio> => {
-  let query = `SELECT * FROM studios WHERE studio_id = $1`;
+  let query = `SELECT studios.*, COUNT(cartoons.studio_id) :: INT AS cartoon_count
+  FROM studios
+  LEFT JOIN cartoons ON cartoons.studio_id = studios.studio_id
+  WHERE studios.studio_id = $1
+  GROUP BY studios.studio_id
+  LIMIT 1;
+  `;
   const values = [studio_id];
   const studio = await db.query(query, values);
 
@@ -50,9 +101,9 @@ export const insertStudio = async ({
   `;
   const values = [name, img_url, description];
 
-  const studio = await db.query(queryStr, values);
+  const response = await db.query(queryStr, values);
 
-  return studio.rows[0];
+  return response.rows[0];
 };
 
 export const removeStudioById = async (studio_id: string) => {
@@ -61,7 +112,7 @@ export const removeStudioById = async (studio_id: string) => {
   `;
   const values = [studio_id];
 
-  const result = await db.query(queryStr, values);
+  const response = await db.query(queryStr, values);
 
-  return result.rows;
+  return response.rows;
 };

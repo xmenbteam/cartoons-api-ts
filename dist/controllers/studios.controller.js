@@ -11,9 +11,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteStudioById = exports.postStudio = exports.patchStudioById = exports.getStudioById = exports.getStudios = void 0;
 const studios_model_1 = require("../models/studios.model");
-const getStudios = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const getStudios = ({ query }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { sort_by, order_by, limit, page } = query;
     try {
-        const studios = yield (0, studios_model_1.fetchStudios)();
+        const studios = yield (0, studios_model_1.fetchStudios)({ sort_by, order_by, limit, page });
         res.status(200).send({ studios });
     }
     catch (err) {

@@ -12,27 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.insertUser = exports.fetchUserByUsername = exports.fetchUsers = void 0;
+exports.fetchCartoons = exports.fetchCartoonById = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
-const fetchUsers = () => __awaiter(void 0, void 0, void 0, function* () {
-    let queryStr = `SELECT * FROM users`;
-    const response = yield connection_1.default.query(queryStr);
-    return response.rows;
-});
-exports.fetchUsers = fetchUsers;
-const fetchUserByUsername = (username) => __awaiter(void 0, void 0, void 0, function* () {
-    let queryStr = `SELECT * FROM users WHERE username = $1 LIMIT 1`;
-    const values = [username];
+const fetchCartoonById = (cartoon_id) => __awaiter(void 0, void 0, void 0, function* () {
+    const queryStr = `SELECT cartoons.*, 
+  COUNT(characters.cartoon_id) :: INT AS character_count
+  FROM cartoons 
+  LEFT JOIN characters ON characters.cartoon_id = cartoons.cartoon_id
+  WHERE cartoons.cartoon_id = $1 
+  GROUP BY cartoons.cartoon_id
+  LIMIT 1`;
+    const values = [cartoon_id];
     const response = yield connection_1.default.query(queryStr, values);
     if (!response.rows[0])
-        return Promise.reject({ status: 404, msg: "User not found!" });
+        return Promise.reject({ status: 404, msg: "Cartoon not found!" });
     return response.rows[0];
 });
-exports.fetchUserByUsername = fetchUserByUsername;
-const insertUser = ({ name, username, avatar_url }) => __awaiter(void 0, void 0, void 0, function* () {
-    let queryStr = `INSERT INTO users (name, username, avatar_url) VALUES ($1,$2,$3) RETURNING *`;
-    let values = [name, username, avatar_url];
-    const response = yield connection_1.default.query(queryStr, values);
-    return response.rows[0];
-});
-exports.insertUser = insertUser;
+exports.fetchCartoonById = fetchCartoonById;
+const fetchCartoons = ({ sort_by = "created_at", order_by = "asc", limit = 10, page = 1, }) => __awaiter(void 0, void 0, void 0, function* () { });
+exports.fetchCartoons = fetchCartoons;

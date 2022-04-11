@@ -6,14 +6,16 @@ import {
   removeStudioById,
   updateStudioById,
 } from "../models/studios.model";
+import { FetchStudioParams } from "../types/data-types";
 
 export const getStudios = async (
-  req: Request,
+  { query }: Request,
   res: Response,
   next: NextFunction
 ) => {
+  const { sort_by, order_by, limit, page }: FetchStudioParams = query;
   try {
-    const studios = await fetchStudios();
+    const studios = await fetchStudios({ sort_by, order_by, limit, page });
     res.status(200).send({ studios });
   } catch (err) {
     next(err);

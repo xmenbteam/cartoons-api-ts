@@ -120,15 +120,17 @@ describe("Studios", () => {
         test("200 - GET all studios", () => __awaiter(void 0, void 0, void 0, function* () {
             const { body } = yield (0, supertest_1.default)(app).get("/api/studios").expect(200);
             const { studios } = body;
-            expect(Array.isArray(studios)).toBe(true);
-            expect(studios.length).toBe(3);
-            studios.forEach((studio) => {
+            expect(Array.isArray(studios.studios)).toBe(true);
+            expect(studios.studios.length).toBe(3);
+            studios.studios.forEach((studio) => {
                 expect(studio).toEqual(expect.objectContaining({
                     studio_id: expect.any(Number),
                     name: expect.any(String),
                     img_url: expect.any(String),
                     description: expect.any(String),
                     votes: expect.any(Number),
+                    cartoon_count: expect.any(Number),
+                    full_count: 3,
                 }));
             });
         }));
@@ -144,6 +146,7 @@ describe("Studios", () => {
                 img_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cartoon_Network_2010_logo.svg/200px-Cartoon_Network_2010_logo.svg.png",
                 description: "Great",
                 votes: 3,
+                cartoon_count: 2,
             });
         }));
         test("404 - Studio not found", () => __awaiter(void 0, void 0, void 0, function* () {
@@ -227,5 +230,51 @@ describe("Studios", () => {
             const { msg } = body;
             expect(msg).toBe("Studio not found!");
         }));
+    });
+});
+describe("Cartoons", () => {
+    describe("GET cartoons", () => {
+        describe("GET cartoon by Id", () => {
+            test("200 - GET Cartoon By ID", () => __awaiter(void 0, void 0, void 0, function* () {
+                const cartoon_id = 2;
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons/${cartoon_id}`)
+                    .expect(200);
+                const { cartoon } = body;
+                expect(cartoon).toEqual({
+                    cartoon_id: 2,
+                    name: "Test Cartoon 2",
+                    votes: 34,
+                    created_at: "1995-02-26T00:00:04.000Z",
+                    description: "Wow testy",
+                    img_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Dexter-logo.png/500px-Dexter-logo.png",
+                    studio_id: 1,
+                    character_count: 4,
+                });
+            }));
+            test("400 - bad request", () => __awaiter(void 0, void 0, void 0, function* () {
+                const cartoon_id = "cheese";
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons/${cartoon_id}`)
+                    .expect(400);
+                const { msg } = body;
+                expect(msg).toBe("Bad request!");
+            }));
+            test("404 - review not found", () => __awaiter(void 0, void 0, void 0, function* () {
+                const cartoon_id = 123456;
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons/${cartoon_id}`)
+                    .expect(404);
+                const { msg } = body;
+                expect(msg).toBe("Cartoon not found!");
+            }));
+        });
+        describe("GET more cartoons", () => {
+            test.only("GET all cartoons", () => __awaiter(void 0, void 0, void 0, function* () {
+                const { body } = yield (0, supertest_1.default)(app).get("/api/cartoons").expect(200);
+                const { cartoons } = body;
+                console.log(cartoons);
+            }));
+        });
     });
 });
