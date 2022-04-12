@@ -7,5 +7,7 @@ exports.sortByValues = [
     "description",
     "votes",
     "cartoon_count",
+    "character_count",
+    "created_at",
 ];
 exports.orderByValues = ["asc", "desc"];

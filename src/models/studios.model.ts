@@ -57,7 +57,8 @@ export const fetchStudios = async ({
 export const fetchStudioById = async (
   studio_id: string
 ): Promise<Returned_Studio> => {
-  let query = `SELECT studios.*, COUNT(cartoons.studio_id) :: INT AS cartoon_count
+  let query = `SELECT studios.*, 
+  COUNT(cartoons.studio_id) :: INT AS cartoon_count
   FROM studios
   LEFT JOIN cartoons ON cartoons.studio_id = studios.studio_id
   WHERE studios.studio_id = $1

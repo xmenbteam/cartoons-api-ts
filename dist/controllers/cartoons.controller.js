@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCartoons = exports.getCartoonById = void 0;
+exports.patchCartoonById = exports.postCartoon = exports.getCartoons = exports.getCartoonById = void 0;
 const cartoons_model_1 = require("../models/cartoons.model");
 const getCartoonById = ({ params }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -22,5 +22,48 @@ const getCartoonById = ({ params }, res, next) => __awaiter(void 0, void 0, void
     }
 });
 exports.getCartoonById = getCartoonById;
-const getCartoons = ({ query }, res, next) => __awaiter(void 0, void 0, void 0, function* () { });
+const getCartoons = ({ query }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { sort_by, order_by, studio_id, page, limit } = query;
+        const cartoons = yield (0, cartoons_model_1.fetchCartoons)({
+            sort_by,
+            order_by,
+            studio_id,
+            page,
+            limit,
+        });
+        res.status(200).send({ cartoons });
+    }
+    catch (error) {
+        next(error);
+    }
+});
 exports.getCartoons = getCartoons;
+const postCartoon = ({ body }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { name, description, img_url, studio_id } = body;
+        const cartoon = yield (0, cartoons_model_1.insertCartoon)({
+            name,
+            description,
+            img_url,
+            studio_id,
+        });
+        res.status(201).send({ cartoon });
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.postCartoon = postCartoon;
+const patchCartoonById = ({ body, params }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { cartoon_id } = params;
+        const { inc_votes } = body;
+        const cartoon = yield (0, cartoons_model_1.updateCartoon)({ cartoon_id, inc_votes });
+        res.status(201).send({ cartoon });
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.patchCartoonById = patchCartoonById;

@@ -77,15 +77,26 @@ type FetchCartoonParams = {
   page?: number;
 };
 
-interface FetchCharacterParams extends FetchCartoonParams {
-  cartoon_id?: number;
-}
+type FetchCharacterParams = {
+  sort_by?: string;
+  order_by?: string;
+  studio_id?: string;
+  limit?: number;
+  page?: number;
+  cartoon_id?: string;
+};
 
 type PostCartoonParams = {
   name: string;
   description: string;
   img_url: string;
   studio_id: number;
+};
+
+type PostCharacterParams = {
+  name: string;
+  cartoon_id: number;
+  img_url: string;
 };
 
 export type PatchCartoonParams = {
@@ -110,6 +121,7 @@ export {
   Returned_Studio_Object,
   Returned_Cartoon,
   PostCartoonParams,
+  PostCharacterParams,
   SeedData,
   Returned_Studio,
   Returned_User,

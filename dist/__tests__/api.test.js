@@ -270,11 +270,293 @@ describe("Cartoons", () => {
             }));
         });
         describe("GET more cartoons", () => {
-            test.only("GET all cartoons", () => __awaiter(void 0, void 0, void 0, function* () {
+            test("GET all cartoons", () => __awaiter(void 0, void 0, void 0, function* () {
                 const { body } = yield (0, supertest_1.default)(app).get("/api/cartoons").expect(200);
                 const { cartoons } = body;
-                console.log(cartoons);
+                expect(Array.isArray(cartoons.cartoons)).toBe(true);
+                expect(cartoons.cartoons.length).toBe(10);
+                cartoons.cartoons.forEach((cartoon) => {
+                    expect(cartoon).toEqual(expect.objectContaining({
+                        cartoon_id: expect.any(Number),
+                        name: expect.any(String),
+                        votes: expect.any(Number),
+                        created_at: expect.any(String),
+                        description: expect.any(String),
+                        img_url: expect.any(String),
+                        studio_id: expect.any(Number),
+                        character_count: expect.any(Number),
+                        full_count: expect.any(Number),
+                    }));
+                });
+            }));
+            test("GET all cartoons by studio_id", () => __awaiter(void 0, void 0, void 0, function* () {
+                const studio_id = 2;
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons?studio_id=${studio_id}`)
+                    .expect(200);
+                const { cartoons } = body;
+                expect(cartoons.cartoons.every((cartoon) => cartoon.studio_id === 2)).toBe(true);
+                expect(cartoons.cartoons.length).toBe(3);
+            }));
+            test("GET cartoons sorted ASC by VOTES", () => __awaiter(void 0, void 0, void 0, function* () {
+                const sort_by = "votes";
+                const order_by = "asc";
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons?sort_by=${sort_by}&order_by=${order_by}`)
+                    .expect(200);
+                const { cartoons } = body;
+                const newCartoons = [...cartoons.cartoons];
+                const sortedCartoons = newCartoons.sort((a, b) => a.votes - b.votes);
+                expect(sortedCartoons).toEqual(cartoons.cartoons);
+            }));
+            test("GET cartoons 2 per page", () => __awaiter(void 0, void 0, void 0, function* () {
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons?limit=2`)
+                    .expect(200);
+                const { cartoons } = body;
+                expect(cartoons.cartoons.length).toBe(2);
+                expect(cartoons.currentPage).toBe(1);
+                expect(cartoons.pageTotal).toBe(5);
+            }));
+            test("GET cartoons 3 per page, page 2", () => __awaiter(void 0, void 0, void 0, function* () {
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons?limit=3&page=2`)
+                    .expect(200);
+                const { cartoons } = body;
+                expect(cartoons.cartoons.length).toBe(3);
+                expect(cartoons.currentPage).toBe(2);
+                expect(cartoons.pageTotal).toBe(4);
+            }));
+            test("400 - Invalid sort_by query", () => __awaiter(void 0, void 0, void 0, function* () {
+                const sort_by = "cheese";
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons?sort_by=${sort_by}`)
+                    .expect(400);
+                const { msg } = body;
+                expect(msg).toBe("Invalid sort_by query: cheese");
+            }));
+            test("400 - invalid studio_id", () => __awaiter(void 0, void 0, void 0, function* () {
+                const studio_id = "cheese";
+                const { body } = yield (0, supertest_1.default)(app).get(`/api/cartoons?studio_id=${studio_id}`);
+                const { msg } = body;
+                expect(msg).toBe("Bad request!");
+            }));
+            test("404 - studio_id doesn't exist", () => __awaiter(void 0, void 0, void 0, function* () {
+                const studio_id = 12345;
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons?studio_id=${studio_id}`)
+                    .expect(404);
+                const { msg } = body;
+                expect(msg).toBe("Studio does not exist!");
+            }));
+            test("400 - invalid page/limit", () => __awaiter(void 0, void 0, void 0, function* () {
+                const page = "cheese";
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons?page=${page}`)
+                    .expect(400);
+                const { msg } = body;
+                expect(msg).toBe("Bad request!");
+            }));
+            test("404 - invalid page/limit", () => __awaiter(void 0, void 0, void 0, function* () {
+                const page = 12345;
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons?page=${page}`)
+                    .expect(404);
+                const { msg } = body;
+                expect(msg).toBe("Not found!");
             }));
         });
+    });
+    describe("POST new cartoon", () => {
+        test("201 - Cartoon created", () => __awaiter(void 0, void 0, void 0, function* () {
+            const newCartoon = {
+                name: "Testy new cartoon",
+                description: "Wow",
+                img_url: "www.google.com",
+                studio_id: 2,
+            };
+            const { body } = yield (0, supertest_1.default)(app)
+                .post("/api/cartoons")
+                .send(newCartoon)
+                .expect(201);
+            const { cartoon } = body;
+            expect(cartoon).toEqual({
+                name: "Testy new cartoon",
+                description: "Wow",
+                img_url: "www.google.com",
+                studio_id: 2,
+                votes: 0,
+                created_at: expect.any(String),
+                cartoon_id: 11,
+            });
+        }));
+        test("400 - Bad Request - things missing", () => __awaiter(void 0, void 0, void 0, function* () {
+            const newCartoon = {
+                name: "Testy new cartoon",
+                description: "Wow",
+                img_url: "www.google.com",
+                // studio_id: 2,
+            };
+            const { body } = yield (0, supertest_1.default)(app)
+                .post("/api/cartoons")
+                .send(newCartoon)
+                .expect(400);
+            const { msg } = body;
+            expect(msg).toBe("Field studio_id cannot be null!");
+        }));
+    });
+    describe("PATCH cartoons", () => {
+        test("201 - Good", () => __awaiter(void 0, void 0, void 0, function* () {
+            const inc_votes = 2;
+            const cartoon_id = 2;
+            const { body } = yield (0, supertest_1.default)(app)
+                .patch(`/api/cartoons/${cartoon_id}`)
+                .send({ inc_votes })
+                .expect(201);
+            const { cartoon } = body;
+            expect(cartoon.votes).toBe(36);
+        }));
+    });
+});
+describe("Characters", () => {
+    describe("GET Characters", () => {
+        test("200 - GET character by id", () => __awaiter(void 0, void 0, void 0, function* () {
+            const character_id = 7;
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/characters/${character_id}`);
+            const { character } = body;
+            const newChar = {
+                character_id: 7,
+                name: "P Test 7",
+                votes: 2,
+                cartoon_id: 3,
+                img_url: "www.google.com",
+            };
+            expect(character).toEqual(newChar);
+        }));
+        test("400 - Bad request", () => __awaiter(void 0, void 0, void 0, function* () {
+            const character_id = "cheese";
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/characters/${character_id}`);
+            const { msg } = body;
+            expect(msg).toBe("Bad request!");
+        }));
+        test("404 - Not Found", () => __awaiter(void 0, void 0, void 0, function* () {
+            const character_id = 1234567890;
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/characters/${character_id}`);
+            const { msg } = body;
+            expect(msg).toBe("Character not found!");
+        }));
+        test("200 - GET all characters", () => __awaiter(void 0, void 0, void 0, function* () {
+            const { body } = yield (0, supertest_1.default)(app).get("/api/characters").expect(200);
+            const { characters } = body;
+            expect(Array.isArray(characters.characters)).toBe(true);
+            expect(characters.characters.length).toBe(10);
+            expect(characters.currentPage).toBe(1);
+            expect(characters.charactersPerPage).toBe(10);
+            expect(characters.pageTotal).toBe(3);
+            expect(characters.characters[0]).toEqual({
+                character_id: 12,
+                name: "Test 12",
+                votes: 2,
+                cartoon_id: 5,
+                img_url: "www.google.com",
+                full_count: 30,
+                cartoon_name: "Test Cartoon 5",
+            });
+        }));
+        test("200 - GET characters by cartoon_id", () => __awaiter(void 0, void 0, void 0, function* () {
+            const cartoon_id = 2;
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/cartoons/${cartoon_id}/characters`);
+            const { characters } = body;
+            expect(characters.characters.length).toBe(4);
+            expect(characters.characters[0].full_count).toBe(4);
+        }));
+        test("200 - GET characters sorted by VOTE DESC", () => __awaiter(void 0, void 0, void 0, function* () {
+            const cartoon_id = 2;
+            const sort_by = "votes";
+            const order_by = "desc";
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/cartoons/${cartoon_id}/characters?sort_by=${sort_by}&order_by=${order_by}`);
+            const { characters } = body;
+            const newChars = [...characters.characters];
+            const sortByVotes = newChars.sort((a, b) => b.votes - a.votes);
+            expect(sortByVotes).toEqual(characters.characters);
+        }));
+        test("400 - invalid sort_by", () => __awaiter(void 0, void 0, void 0, function* () {
+            const cartoon_id = 2;
+            const sort_by = "cheese";
+            const order_by = "desc";
+            const { body } = yield (0, supertest_1.default)(app)
+                .get(`/api/cartoons/${cartoon_id}/characters?sort_by=${sort_by}&order_by=${order_by}`)
+                .expect(400);
+            const { msg } = body;
+            expect(msg).toBe("Invalid sort_by query: cheese");
+        }));
+    });
+    describe("PATCH characters", () => {
+        test("201 - Successful", () => __awaiter(void 0, void 0, void 0, function* () {
+            const inc_votes = 3;
+            const character_id = 3;
+            const { body } = yield (0, supertest_1.default)(app)
+                .patch(`/api/characters/${character_id}`)
+                .send({ inc_votes });
+            const { character } = body;
+            expect(character.votes).toBe(10);
+        }));
+        test("400 - Bad request", () => __awaiter(void 0, void 0, void 0, function* () {
+            const inc_votes = "cheese";
+            const character_id = 3;
+            const { body } = yield (0, supertest_1.default)(app)
+                .patch(`/api/characters/${character_id}`)
+                .send({ inc_votes });
+            const { msg } = body;
+            expect(msg).toBe("Bad request!");
+        }));
+        test("404 - Not found", () => __awaiter(void 0, void 0, void 0, function* () {
+            const inc_votes = 3;
+            const character_id = 3333333;
+            const { body } = yield (0, supertest_1.default)(app)
+                .patch(`/api/characters/${character_id}`)
+                .send({ inc_votes });
+            const { msg } = body;
+            expect(msg).toBe("Character not found!");
+        }));
+    });
+    describe("POST Character", () => {
+        test("201 - Character created", () => __awaiter(void 0, void 0, void 0, function* () {
+            const newCharacter = {
+                name: "Testington",
+                cartoon_id: 2,
+                img_url: "Hello",
+            };
+            const { body: char } = yield (0, supertest_1.default)(app)
+                .post("/api/characters")
+                .send(newCharacter)
+                .expect(201);
+            const { body: charList } = yield (0, supertest_1.default)(app)
+                .get("/api/cartoons/2/characters")
+                .expect(200);
+            const { character } = char;
+            const { characters } = charList;
+            expect(characters.characters.length).toBe(5);
+            expect(character).toEqual({
+                character_id: 31,
+                name: "Testington",
+                votes: 0,
+                cartoon_id: 2,
+                img_url: "Hello",
+            });
+        }));
+        test("400 - missing fields", () => __awaiter(void 0, void 0, void 0, function* () {
+            const newCharacter = {
+                name: "Testington",
+                // cartoon_id: 2,
+                img_url: "Hello",
+            };
+            const { body } = yield (0, supertest_1.default)(app)
+                .post("/api/characters")
+                .send(newCharacter)
+                .expect(400);
+            const { msg } = body;
+            expect(msg).toBe("Field cartoon_id cannot be null!");
+        }));
     });
 });

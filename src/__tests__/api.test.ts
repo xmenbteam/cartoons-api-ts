@@ -449,13 +449,181 @@ describe("Cartoons", () => {
 
 describe("Characters", () => {
   describe("GET Characters", () => {
+    test("200 - GET character by id", async () => {
+      const character_id = 7;
+      const { body } = await request(app).get(
+        `/api/characters/${character_id}`
+      );
+      const { character } = body;
+
+      const newChar = {
+        character_id: 7,
+        name: "P Test 7",
+        votes: 2,
+        cartoon_id: 3,
+        img_url: "www.google.com",
+      };
+
+      expect(character).toEqual(newChar);
+    });
+    test("400 - Bad request", async () => {
+      const character_id = "cheese";
+      const { body } = await request(app).get(
+        `/api/characters/${character_id}`
+      );
+      const { msg } = body;
+      expect(msg).toBe("Bad request!");
+    });
+    test("404 - Not Found", async () => {
+      const character_id = 1234567890;
+      const { body } = await request(app).get(
+        `/api/characters/${character_id}`
+      );
+      const { msg } = body;
+      expect(msg).toBe("Character not found!");
+    });
     test("200 - GET all characters", async () => {
       const { body } = await request(app).get("/api/characters").expect(200);
 
       const { characters } = body;
 
       expect(Array.isArray(characters.characters)).toBe(true);
-      expect(characters.characters.length).toBe(30);
+      expect(characters.characters.length).toBe(10);
+      expect(characters.currentPage).toBe(1);
+      expect(characters.charactersPerPage).toBe(10);
+      expect(characters.pageTotal).toBe(3);
+      expect(characters.characters[0]).toEqual({
+        character_id: 12,
+        name: "Test 12",
+        votes: 2,
+        cartoon_id: 5,
+        img_url: "www.google.com",
+        full_count: 30,
+        cartoon_name: "Test Cartoon 5",
+      });
+    });
+    test("200 - GET characters by cartoon_id", async () => {
+      const cartoon_id = 2;
+      const { body } = await request(app).get(
+        `/api/cartoons/${cartoon_id}/characters`
+      );
+      const { characters } = body;
+
+      expect(characters.characters.length).toBe(4);
+      expect(characters.characters[0].full_count).toBe(4);
+    });
+    test("200 - GET characters sorted by VOTE DESC", async () => {
+      const cartoon_id = 2;
+      const sort_by = "votes";
+      const order_by = "desc";
+
+      const { body } = await request(app).get(
+        `/api/cartoons/${cartoon_id}/characters?sort_by=${sort_by}&order_by=${order_by}`
+      );
+
+      const { characters } = body;
+
+      const newChars = [...characters.characters];
+
+      const sortByVotes = newChars.sort((a, b) => b.votes - a.votes);
+
+      expect(sortByVotes).toEqual(characters.characters);
+    });
+    test("400 - invalid sort_by", async () => {
+      const cartoon_id = 2;
+      const sort_by = "cheese";
+      const order_by = "desc";
+
+      const { body } = await request(app)
+        .get(
+          `/api/cartoons/${cartoon_id}/characters?sort_by=${sort_by}&order_by=${order_by}`
+        )
+        .expect(400);
+
+      const { msg } = body;
+
+      expect(msg).toBe("Invalid sort_by query: cheese");
+    });
+  });
+  describe("PATCH characters", () => {
+    test("201 - Successful", async () => {
+      const inc_votes = 3;
+      const character_id = 3;
+
+      const { body } = await request(app)
+        .patch(`/api/characters/${character_id}`)
+        .send({ inc_votes });
+
+      const { character } = body;
+
+      expect(character.votes).toBe(10);
+    });
+    test("400 - Bad request", async () => {
+      const inc_votes = "cheese";
+      const character_id = 3;
+
+      const { body } = await request(app)
+        .patch(`/api/characters/${character_id}`)
+        .send({ inc_votes });
+
+      const { msg } = body;
+      expect(msg).toBe("Bad request!");
+    });
+    test("404 - Not found", async () => {
+      const inc_votes = 3;
+      const character_id = 3333333;
+
+      const { body } = await request(app)
+        .patch(`/api/characters/${character_id}`)
+        .send({ inc_votes });
+
+      const { msg } = body;
+      expect(msg).toBe("Character not found!");
+    });
+  });
+  describe("POST Character", () => {
+    test("201 - Character created", async () => {
+      const newCharacter = {
+        name: "Testington",
+        cartoon_id: 2,
+        img_url: "Hello",
+      };
+
+      const { body: char } = await request(app)
+        .post("/api/characters")
+        .send(newCharacter)
+        .expect(201);
+
+      const { body: charList } = await request(app)
+        .get("/api/cartoons/2/characters")
+        .expect(200);
+
+      const { character } = char;
+      const { characters } = charList;
+
+      expect(characters.characters.length).toBe(5);
+      expect(character).toEqual({
+        character_id: 31,
+        name: "Testington",
+        votes: 0,
+        cartoon_id: 2,
+        img_url: "Hello",
+      });
+    });
+    test("400 - missing fields", async () => {
+      const newCharacter = {
+        name: "Testington",
+        // cartoon_id: 2,
+        img_url: "Hello",
+      };
+      const { body } = await request(app)
+        .post("/api/characters")
+        .send(newCharacter)
+        .expect(400);
+
+      const { msg } = body;
+
+      expect(msg).toBe("Field cartoon_id cannot be null!");
     });
   });
 });
