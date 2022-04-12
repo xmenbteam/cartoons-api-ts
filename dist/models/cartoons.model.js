@@ -68,7 +68,7 @@ const fetchCartoons = ({ sort_by = "created_at", order_by = "asc", studio_id, li
     const returnedObject = {
         cartoons,
         currentPage: Number(page),
-        studiosPerPage: limit,
+        cartoonsPerPage: limit,
         pageTotal: Math.ceil(cartoons[0].full_count / limit),
     };
     return returnedObject;

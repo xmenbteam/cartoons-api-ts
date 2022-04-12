@@ -86,6 +86,14 @@ type FetchCharacterParams = {
   cartoon_id?: string;
 };
 
+type FetchCommentsParams = {
+  sort_by?: string;
+  order_by?: string;
+  limit?: number;
+  page?: number;
+  cartoon_id?: string;
+};
+
 type PostCartoonParams = {
   name: string;
   description: string;
@@ -111,6 +119,16 @@ type Returned_Studio_Object = {
   pageTotal: number;
 };
 
+type Returned_Comment = {
+  comment_id: number;
+  author: string;
+  cartoon_id: number;
+  body: string;
+  votes: number;
+  created_at: string;
+  full_count: number;
+};
+
 export {
   DB_Object,
   DB_Cartoon,
@@ -122,6 +140,7 @@ export {
   Returned_Cartoon,
   PostCartoonParams,
   PostCharacterParams,
+  FetchCommentsParams,
   SeedData,
   Returned_Studio,
   Returned_User,
@@ -129,4 +148,5 @@ export {
   FetchCartoonParams,
   FetchCharacterParams,
   PostStudioBody,
+  Returned_Comment,
 };

@@ -77,7 +77,7 @@ export const fetchCartoons = async ({
   const returnedObject = {
     cartoons,
     currentPage: Number(page),
-    studiosPerPage: limit,
+    cartoonsPerPage: limit,
     pageTotal: Math.ceil(cartoons[0].full_count / limit),
   };
 

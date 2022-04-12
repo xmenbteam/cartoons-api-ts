@@ -5,6 +5,7 @@ import db from "../db/connection";
 import {
   DB_Studio,
   Returned_Cartoon,
+  Returned_Comment,
   Returned_Studio,
   Returned_User,
 } from "../types/data-types";
@@ -624,6 +625,122 @@ describe("Characters", () => {
       const { msg } = body;
 
       expect(msg).toBe("Field cartoon_id cannot be null!");
+    });
+  });
+});
+
+describe("Comments", () => {
+  describe("GET comments", () => {
+    test("200 - GET comment by id", async () => {
+      const comment_id = 3;
+      const { body } = await request(app)
+        .get(`/api/comments/${comment_id}`)
+        .expect(200);
+
+      const { comment } = body;
+
+      expect(comment.comment_id).toBe(comment_id);
+      expect(comment).toEqual({
+        comment_id: 3,
+        author: "jadelandeg",
+        cartoon_id: 9,
+        body: "elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis",
+        votes: -97,
+        created_at: "2022-02-21T20:30:29.000Z",
+      });
+    });
+    test("400 - invalid id", async () => {
+      const comment_id = "cheese";
+      const { body } = await request(app)
+        .get(`/api/comments/${comment_id}`)
+        .expect(400);
+
+      const { msg } = body;
+      expect(msg).toBe("Bad request!");
+    });
+    test("404 comment not found", async () => {
+      const comment_id = 1234567980;
+      const { body } = await request(app)
+        .get(`/api/comments/${comment_id}`)
+        .expect(404);
+
+      const { msg } = body;
+      expect(msg).toBe("Comment not found!");
+    });
+    test("200 - GET comments", async () => {
+      const { body } = await request(app).get("/api/comments").expect(200);
+
+      const { comments } = body;
+      expect(comments.comments.length).toBe(10);
+    });
+    test("200 - GET comments by cartoon_id", async () => {
+      const cartoon_id = 1;
+      const { body } = await request(app).get(
+        `/api/cartoons/${cartoon_id}/comments`
+      );
+      const { comments } = body;
+
+      expect(comments.comments.length).toBe(2);
+      expect(
+        comments.comments.every(
+          (comment: Returned_Comment) => comment.cartoon_id === cartoon_id
+        )
+      ).toBe(true);
+    });
+    test("PAGINATION - 2 per page", async () => {
+      const limit = 2;
+      const page = 2;
+      const { body } = await request(app).get(
+        `/api/comments?limit=${limit}&page=${page}`
+      );
+      const { comments } = body;
+      expect(comments.comments.length).toBe(limit);
+    });
+  });
+  describe("PATCH comments", () => {
+    test("201 - PATCH votes", async () => {
+      const inc_votes = 3;
+      const comment_id = 2;
+      const { body } = await request(app)
+        .patch(`/api/comments/${comment_id}`)
+        .send({ inc_votes })
+        .expect(201);
+      const { comment } = body;
+
+      expect(comment.votes).toBe(-94);
+    });
+    test("400 - bad request inc_votes", async () => {
+      const inc_votes = "cheese";
+      const comment_id = 2;
+      const { body } = await request(app)
+        .patch(`/api/comments/${comment_id}`)
+        .send({ inc_votes })
+        .expect(400);
+      const { msg } = body;
+
+      expect(msg).toBe("Bad request!");
+    });
+    test("404 - comment not found", async () => {
+      const inc_votes = 5;
+      const comment_id = 222222222;
+      const { body } = await request(app)
+        .patch(`/api/comments/${comment_id}`)
+        .send({ inc_votes })
+        .expect(404);
+      const { msg } = body;
+
+      expect(msg).toBe("Comment not found!");
+    });
+    test("400 - bad request comment_id", async () => {
+      const inc_votes = 3;
+      const comment_id = "cheese";
+      const { body } = await request(app)
+        .patch(`/api/comments/${comment_id}`)
+        .send({ inc_votes })
+        .expect(400);
+      const { msg } = body;
+
+      expect(msg).toBe("Bad request!");
     });
   });
 });

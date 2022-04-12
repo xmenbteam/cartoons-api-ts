@@ -560,3 +560,100 @@ describe("Characters", () => {
         }));
     });
 });
+describe("Comments", () => {
+    describe("GET comments", () => {
+        test("200 - GET comment by id", () => __awaiter(void 0, void 0, void 0, function* () {
+            const comment_id = 3;
+            const { body } = yield (0, supertest_1.default)(app)
+                .get(`/api/comments/${comment_id}`)
+                .expect(200);
+            const { comment } = body;
+            expect(comment.comment_id).toBe(comment_id);
+            expect(comment).toEqual({
+                comment_id: 3,
+                author: "jadelandeg",
+                cartoon_id: 9,
+                body: "elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis",
+                votes: -97,
+                created_at: "2022-02-21T20:30:29.000Z",
+            });
+        }));
+        test("400 - invalid id", () => __awaiter(void 0, void 0, void 0, function* () {
+            const comment_id = "cheese";
+            const { body } = yield (0, supertest_1.default)(app)
+                .get(`/api/comments/${comment_id}`)
+                .expect(400);
+            const { msg } = body;
+            expect(msg).toBe("Bad request!");
+        }));
+        test("404 comment not found", () => __awaiter(void 0, void 0, void 0, function* () {
+            const comment_id = 1234567980;
+            const { body } = yield (0, supertest_1.default)(app)
+                .get(`/api/comments/${comment_id}`)
+                .expect(404);
+            const { msg } = body;
+            expect(msg).toBe("Comment not found!");
+        }));
+        test("200 - GET comments", () => __awaiter(void 0, void 0, void 0, function* () {
+            const { body } = yield (0, supertest_1.default)(app).get("/api/comments").expect(200);
+            const { comments } = body;
+            expect(comments.comments.length).toBe(10);
+        }));
+        test("200 - GET comments by cartoon_id", () => __awaiter(void 0, void 0, void 0, function* () {
+            const cartoon_id = 1;
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/cartoons/${cartoon_id}/comments`);
+            const { comments } = body;
+            expect(comments.comments.length).toBe(2);
+            expect(comments.comments.every((comment) => comment.cartoon_id === cartoon_id)).toBe(true);
+        }));
+        test("PAGINATION - 2 per page", () => __awaiter(void 0, void 0, void 0, function* () {
+            const limit = 2;
+            const page = 2;
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/comments?limit=${limit}&page=${page}`);
+            const { comments } = body;
+            expect(comments.comments.length).toBe(limit);
+        }));
+    });
+    describe("PATCH comments", () => {
+        test("201 - PATCH votes", () => __awaiter(void 0, void 0, void 0, function* () {
+            const inc_votes = 3;
+            const comment_id = 2;
+            const { body } = yield (0, supertest_1.default)(app)
+                .patch(`/api/comments/${comment_id}`)
+                .send({ inc_votes })
+                .expect(201);
+            const { comment } = body;
+            expect(comment.votes).toBe(-94);
+        }));
+        test("400 - bad request inc_votes", () => __awaiter(void 0, void 0, void 0, function* () {
+            const inc_votes = "cheese";
+            const comment_id = 2;
+            const { body } = yield (0, supertest_1.default)(app)
+                .patch(`/api/comments/${comment_id}`)
+                .send({ inc_votes })
+                .expect(400);
+            const { msg } = body;
+            expect(msg).toBe("Bad request!");
+        }));
+        test("404 - comment not found", () => __awaiter(void 0, void 0, void 0, function* () {
+            const inc_votes = 5;
+            const comment_id = 222222222;
+            const { body } = yield (0, supertest_1.default)(app)
+                .patch(`/api/comments/${comment_id}`)
+                .send({ inc_votes })
+                .expect(404);
+            const { msg } = body;
+            expect(msg).toBe("Comment not found!");
+        }));
+        test("400 - bad request comment_id", () => __awaiter(void 0, void 0, void 0, function* () {
+            const inc_votes = 3;
+            const comment_id = "cheese";
+            const { body } = yield (0, supertest_1.default)(app)
+                .patch(`/api/comments/${comment_id}`)
+                .send({ inc_votes })
+                .expect(400);
+            const { msg } = body;
+            expect(msg).toBe("Bad request!");
+        }));
+    });
+});
