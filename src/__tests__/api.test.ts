@@ -743,4 +743,89 @@ describe("Comments", () => {
       expect(msg).toBe("Bad request!");
     });
   });
+  describe("POST comment", () => {
+    test("200 - POST Comment", async () => {
+      const postingComment = {
+        cartoon_id: 1,
+        body: "This is a comment",
+        author: "xmenbteam",
+      };
+
+      const returnedComment = {
+        ...postingComment,
+        comment_id: 41,
+        votes: 0,
+        created_at: expect.any(String),
+      };
+      const { body } = await request(app)
+        .post("/api/comments")
+        .send(postingComment)
+        .expect(200);
+
+      const { comment } = body;
+
+      expect(comment).toEqual(returnedComment);
+    });
+    test("400 - Null field", async () => {
+      const postingComment = {
+        cartoon_id: 1,
+        // body: "This is a comment",
+        author: "xmenbteam",
+      };
+
+      const { body } = await request(app)
+        .post("/api/comments")
+        .send(postingComment)
+        .expect(400);
+
+      const { msg } = body;
+      expect(msg).toBe("Field body cannot be null!");
+    });
+    test("400 - INvalid User", async () => {
+      const postingComment = {
+        cartoon_id: 1,
+        body: "This is a comment",
+        author: "cheese",
+      };
+
+      const { body } = await request(app)
+        .post("/api/comments")
+        .send(postingComment)
+        .expect(400);
+
+      const { msg } = body;
+
+      expect(msg).toBe("Bad request!");
+    });
+  });
+  describe("DELETE comment", () => {
+    test("204 - deleted", async () => {
+      const comment_id = 3;
+      await request(app).delete(`/api/comments/${comment_id}`);
+
+      const { body } = await request(app).get(`/api/comments/${comment_id}`);
+
+      console.log(body);
+
+      const { msg } = body;
+
+      expect(msg).toBe("Comment not found!");
+    });
+    test("404 - comment doesn't exist", async () => {
+      const comment_id = 3333333;
+      const { body } = await request(app).delete(`/api/comments/${comment_id}`);
+
+      const { msg } = body;
+
+      expect(msg).toBe("Comment not found!");
+    });
+    test("400 - bad request", async () => {
+      const comment_id = "cheese";
+      const { body } = await request(app).delete(`/api/comments/${comment_id}`);
+
+      const { msg } = body;
+
+      expect(msg).toBe("Bad request!");
+    });
+  });
 });

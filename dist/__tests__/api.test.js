@@ -656,4 +656,68 @@ describe("Comments", () => {
             expect(msg).toBe("Bad request!");
         }));
     });
+    describe("POST comment", () => {
+        test("200 - POST Comment", () => __awaiter(void 0, void 0, void 0, function* () {
+            const postingComment = {
+                cartoon_id: 1,
+                body: "This is a comment",
+                author: "xmenbteam",
+            };
+            const returnedComment = Object.assign(Object.assign({}, postingComment), { comment_id: 41, votes: 0, created_at: expect.any(String) });
+            const { body } = yield (0, supertest_1.default)(app)
+                .post("/api/comments")
+                .send(postingComment)
+                .expect(200);
+            const { comment } = body;
+            expect(comment).toEqual(returnedComment);
+        }));
+        test("400 - Null field", () => __awaiter(void 0, void 0, void 0, function* () {
+            const postingComment = {
+                cartoon_id: 1,
+                // body: "This is a comment",
+                author: "xmenbteam",
+            };
+            const { body } = yield (0, supertest_1.default)(app)
+                .post("/api/comments")
+                .send(postingComment)
+                .expect(400);
+            const { msg } = body;
+            expect(msg).toBe("Field body cannot be null!");
+        }));
+        test("400 - INvalid User", () => __awaiter(void 0, void 0, void 0, function* () {
+            const postingComment = {
+                cartoon_id: 1,
+                body: "This is a comment",
+                author: "cheese",
+            };
+            const { body } = yield (0, supertest_1.default)(app)
+                .post("/api/comments")
+                .send(postingComment)
+                .expect(400);
+            const { msg } = body;
+            expect(msg).toBe("Bad request!");
+        }));
+    });
+    describe("DELETE comment", () => {
+        test("204 - deleted", () => __awaiter(void 0, void 0, void 0, function* () {
+            const comment_id = 3;
+            yield (0, supertest_1.default)(app).delete(`/api/comments/${comment_id}`);
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/comments/${comment_id}`);
+            console.log(body);
+            const { msg } = body;
+            expect(msg).toBe("Comment not found!");
+        }));
+        test("404 - comment doesn't exist", () => __awaiter(void 0, void 0, void 0, function* () {
+            const comment_id = 3333333;
+            const { body } = yield (0, supertest_1.default)(app).delete(`/api/comments/${comment_id}`);
+            const { msg } = body;
+            expect(msg).toBe("Comment not found!");
+        }));
+        test("400 - bad request", () => __awaiter(void 0, void 0, void 0, function* () {
+            const comment_id = "cheese";
+            const { body } = yield (0, supertest_1.default)(app).delete(`/api/comments/${comment_id}`);
+            const { msg } = body;
+            expect(msg).toBe("Bad request!");
+        }));
+    });
 });

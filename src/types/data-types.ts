@@ -107,6 +107,12 @@ type PostCharacterParams = {
   img_url: string;
 };
 
+type PostCommentParams = {
+  cartoon_id: number;
+  body: string;
+  author: string;
+};
+
 export type PatchCartoonParams = {
   cartoon_id: string;
   inc_votes: number;
@@ -140,6 +146,7 @@ export {
   Returned_Cartoon,
   PostCartoonParams,
   PostCharacterParams,
+  PostCommentParams,
   FetchCommentsParams,
   SeedData,
   Returned_Studio,

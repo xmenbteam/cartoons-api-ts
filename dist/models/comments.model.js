@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateCommentById = exports.fetchComments = exports.fetchCommentById = void 0;
+exports.removeComment = exports.sendComment = exports.updateCommentById = exports.fetchComments = exports.fetchCommentById = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 const query_utils_1 = require("../utils/query-utils");
 const util_functions_1 = require("../utils/util-functions");
@@ -79,3 +79,29 @@ const updateCommentById = (comment_id, inc_votes) => __awaiter(void 0, void 0, v
     return response.rows[0];
 });
 exports.updateCommentById = updateCommentById;
+const sendComment = ({ cartoon_id, body, author, }) => __awaiter(void 0, void 0, void 0, function* () {
+    let queryStr = `
+  INSERT INTO comments
+  (cartoon_id, body, author)
+  VALUES ($1, $2, $3)
+  RETURNING *
+  `;
+    const values = [cartoon_id, body, author];
+    const response = yield connection_1.default.query(queryStr, values);
+    return response.rows[0];
+});
+exports.sendComment = sendComment;
+const removeComment = (comment_id) => __awaiter(void 0, void 0, void 0, function* () {
+    let queryStr = `
+  DELETE FROM comments
+  WHERE comment_id = $1
+  `;
+    const values = [comment_id];
+    const result = yield connection_1.default.query(queryStr, values);
+    // rowCount === number of deleted rows
+    const { rowCount } = result;
+    if (!rowCount)
+        return Promise.reject({ status: 404, msg: "Comment not found!" });
+    return result;
+});
+exports.removeComment = removeComment;

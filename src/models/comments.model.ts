@@ -1,5 +1,5 @@
 import db from "../db/connection";
-import { FetchCommentsParams } from "../types/data-types";
+import { FetchCommentsParams, PostCommentParams } from "../types/data-types";
 import { orderByValues, sortByValues } from "../utils/query-utils";
 import { checkIfValid, pageOffsetCalc } from "../utils/util-functions";
 
@@ -88,4 +88,38 @@ export const updateCommentById = async (
     return Promise.reject({ status: 404, msg: "Comment not found!" });
 
   return response.rows[0];
+};
+
+export const sendComment = async ({
+  cartoon_id,
+  body,
+  author,
+}: PostCommentParams) => {
+  let queryStr = `
+  INSERT INTO comments
+  (cartoon_id, body, author)
+  VALUES ($1, $2, $3)
+  RETURNING *
+  `;
+  const values = [cartoon_id, body, author];
+
+  const response = await db.query(queryStr, values);
+
+  return response.rows[0];
+};
+
+export const removeComment = async (comment_id: string) => {
+  let queryStr = `
+  DELETE FROM comments
+  WHERE comment_id = $1
+  `;
+  const values = [comment_id];
+
+  const result = await db.query(queryStr, values);
+  // rowCount === number of deleted rows
+  const { rowCount } = result;
+  if (!rowCount)
+    return Promise.reject({ status: 404, msg: "Comment not found!" });
+
+  return result;
 };

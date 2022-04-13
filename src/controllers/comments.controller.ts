@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import {
   fetchCommentById,
   fetchComments,
+  removeComment,
+  sendComment,
   updateCommentById,
 } from "../models/comments.model";
 import { FetchCommentsParams } from "../types/data-types";
@@ -56,5 +58,38 @@ export const patchCommentById = async (
     res.status(201).send({ comment });
   } catch (error) {
     next(error);
+  }
+};
+
+export const postComment = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { body } = req;
+
+    const comment = await sendComment(body);
+
+    res.status(200).send({ comment });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteComment = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { comment_id } = req.params;
+
+    await removeComment(comment_id);
+
+    res.status(204).send({ msg: "Comment deleted!" });
+  } catch (err) {
+    console.log(err);
+    next(err);
   }
 };

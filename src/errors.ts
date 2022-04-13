@@ -12,7 +12,7 @@ export const handlePSQLErrors = (
     case "22P02":
       res.status(400).send({ msg: "Bad request!", err });
     case "23503":
-      res.status(404).send({ msg: "Not found!", err });
+      res.status(400).send({ msg: "Bad request!", err });
     case "22003":
       res.status(404).send({ msg: "Comment not found!", err });
     case "42601":

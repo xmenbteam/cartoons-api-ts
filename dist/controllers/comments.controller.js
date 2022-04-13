@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.patchCommentById = exports.getComments = exports.getCommentById = void 0;
+exports.deleteComment = exports.postComment = exports.patchCommentById = exports.getComments = exports.getCommentById = void 0;
 const comments_model_1 = require("../models/comments.model");
 const util_functions_1 = require("../utils/util-functions");
 const getCommentById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -50,3 +50,26 @@ const patchCommentById = (req, res, next) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.patchCommentById = patchCommentById;
+const postComment = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { body } = req;
+        const comment = yield (0, comments_model_1.sendComment)(body);
+        res.status(200).send({ comment });
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.postComment = postComment;
+const deleteComment = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { comment_id } = req.params;
+        yield (0, comments_model_1.removeComment)(comment_id);
+        res.status(204).send({ msg: "Comment deleted!" });
+    }
+    catch (err) {
+        console.log(err);
+        next(err);
+    }
+});
+exports.deleteComment = deleteComment;

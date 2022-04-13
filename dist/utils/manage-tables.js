@@ -72,7 +72,7 @@ const createTables = () => __awaiter(void 0, void 0, void 0, function* () {
       FOREIGN KEY (author) REFERENCES users(username) ON DELETE CASCADE,
       cartoon_id INT NOT NULL,
       FOREIGN KEY (cartoon_id) REFERENCES cartoons(cartoon_id) ON DELETE CASCADE,
-      body TEXT,
+      body TEXT NOT NULL,
       votes INT DEFAULT 0,
       created_at TIMESTAMP DEFAULT NOW()
   )
