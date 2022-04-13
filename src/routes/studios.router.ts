@@ -1,4 +1,5 @@
 import express, { Router } from "express";
+import { getCartoons } from "../controllers/cartoons.controller";
 import {
   deleteStudioById,
   getStudioById,
@@ -15,5 +16,7 @@ studiosRouter
   .get(getStudioById)
   .patch(patchStudioById)
   .delete(deleteStudioById);
+
+studiosRouter.route("/:studio_id/cartoons").get(getCartoons);
 
 export default studiosRouter;

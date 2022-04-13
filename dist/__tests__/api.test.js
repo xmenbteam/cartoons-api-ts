@@ -39,6 +39,7 @@ const seed_1 = require("../db/seeds/seed");
 const testData = __importStar(require("../db/data/test-data/index"));
 const supertest_1 = __importDefault(require("supertest"));
 const connection_1 = __importDefault(require("../db/connection"));
+const endpoints_1 = require("../endpoints");
 const app = require("../app");
 beforeEach(() => (0, seed_1.seed)(testData));
 afterAll(() => connection_1.default.end());
@@ -47,6 +48,12 @@ describe("Welcome", () => {
         const { body } = yield (0, supertest_1.default)(app).get("/").expect(200);
         const message = "Welcome to the cartoons API! Go to /api to see possible endpoints!";
         expect(body.msg).toBe(message);
+    }));
+});
+describe("API", () => {
+    test("Returns available endpoints", () => __awaiter(void 0, void 0, void 0, function* () {
+        const { body } = yield (0, supertest_1.default)(app).get("/api").expect(200);
+        expect(body.endPoints).toEqual(endpoints_1.endPoints);
     }));
 });
 describe("Users", () => {
@@ -301,7 +308,7 @@ describe("Cartoons", () => {
             test("GET all cartoons by studio_id", () => __awaiter(void 0, void 0, void 0, function* () {
                 const studio_id = 2;
                 const { body } = yield (0, supertest_1.default)(app)
-                    .get(`/api/cartoons?studio_id=${studio_id}`)
+                    .get(`/api/studios/${studio_id}/cartoons`)
                     .expect(200);
                 const { cartoons } = body;
                 expect(cartoons.cartoons.every((cartoon) => cartoon.studio_id === 2)).toBe(true);
@@ -346,14 +353,14 @@ describe("Cartoons", () => {
             }));
             test("400 - invalid studio_id", () => __awaiter(void 0, void 0, void 0, function* () {
                 const studio_id = "cheese";
-                const { body } = yield (0, supertest_1.default)(app).get(`/api/cartoons?studio_id=${studio_id}`);
+                const { body } = yield (0, supertest_1.default)(app).get(`/api/studios/${studio_id}/cartoons`);
                 const { msg } = body;
                 expect(msg).toBe("Bad request!");
             }));
             test("404 - studio_id doesn't exist", () => __awaiter(void 0, void 0, void 0, function* () {
                 const studio_id = 12345;
                 const { body } = yield (0, supertest_1.default)(app)
-                    .get(`/api/cartoons?studio_id=${studio_id}`)
+                    .get(`/api/studios/${studio_id}/cartoons`)
                     .expect(404);
                 const { msg } = body;
                 expect(msg).toBe("Studio does not exist!");

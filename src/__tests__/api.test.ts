@@ -9,6 +9,7 @@ import {
   Returned_Studio,
   Returned_User,
 } from "../types/data-types";
+import { endPoints } from "../endpoints";
 
 const app = require("../app");
 
@@ -21,6 +22,13 @@ describe("Welcome", () => {
     const message =
       "Welcome to the cartoons API! Go to /api to see possible endpoints!";
     expect(body.msg).toBe(message);
+  });
+});
+
+describe("API", () => {
+  test("Returns available endpoints", async () => {
+    const { body } = await request(app).get("/api").expect(200);
+    expect(body.endPoints).toEqual(endPoints);
   });
 });
 
@@ -306,7 +314,7 @@ describe("Cartoons", () => {
       test("GET all cartoons by studio_id", async () => {
         const studio_id = 2;
         const { body } = await request(app)
-          .get(`/api/cartoons?studio_id=${studio_id}`)
+          .get(`/api/studios/${studio_id}/cartoons`)
           .expect(200);
 
         const { cartoons } = body;
@@ -367,7 +375,7 @@ describe("Cartoons", () => {
       test("400 - invalid studio_id", async () => {
         const studio_id = "cheese";
         const { body } = await request(app).get(
-          `/api/cartoons?studio_id=${studio_id}`
+          `/api/studios/${studio_id}/cartoons`
         );
         const { msg } = body;
         expect(msg).toBe("Bad request!");
@@ -375,7 +383,7 @@ describe("Cartoons", () => {
       test("404 - studio_id doesn't exist", async () => {
         const studio_id = 12345;
         const { body } = await request(app)
-          .get(`/api/cartoons?studio_id=${studio_id}`)
+          .get(`/api/studios/${studio_id}/cartoons`)
           .expect(404);
         const { msg } = body;
         expect(msg).toBe("Studio does not exist!");
@@ -711,6 +719,7 @@ describe("Comments", () => {
       const { body } = await request(app).get("/api/comments").expect(200);
 
       const { comments } = body;
+
       expect(comments.comments.length).toBe(10);
     });
     test("200 - GET comments by cartoon_id", async () => {

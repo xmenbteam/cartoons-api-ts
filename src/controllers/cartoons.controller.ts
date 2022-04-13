@@ -25,13 +25,13 @@ export const getCartoonById = async (
 };
 
 export const getCartoons = async (
-  { query }: Request,
+  { query, params }: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const { sort_by, order_by, studio_id, page, limit }: FetchCartoonParams =
-      query;
+    const { sort_by, order_by, page, limit }: FetchCartoonParams = query;
+    const { studio_id } = params;
 
     const cartoons = await fetchCartoons({
       sort_by,

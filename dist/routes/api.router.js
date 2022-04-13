@@ -4,12 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const api_controller_1 = require("../controllers/api.controller");
 const cartoons_router_1 = __importDefault(require("./cartoons.router"));
 const characters_router_1 = __importDefault(require("./characters.router"));
 const comments_router_1 = __importDefault(require("./comments.router"));
 const studios_router_1 = __importDefault(require("./studios.router"));
 const users_router_1 = __importDefault(require("./users.router"));
 const apiRouter = express_1.default.Router();
+apiRouter.route("/").get(api_controller_1.getApi);
 apiRouter.use("/studios", studios_router_1.default);
 apiRouter.use("/users", users_router_1.default);
 apiRouter.use("/cartoons", cartoons_router_1.default);
