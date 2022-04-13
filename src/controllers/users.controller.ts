@@ -3,6 +3,7 @@ import {
   fetchUserByUsername,
   fetchUsers,
   insertUser,
+  removeUser,
 } from "../models/users.model";
 
 export const getAllUsers = async (
@@ -44,5 +45,20 @@ export const postNewUser = async (
     res.status(201).send({ user });
   } catch (error) {
     next(error);
+  }
+};
+export const deleteUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { username } = req.params;
+
+    await removeUser(username);
+
+    res.status(204).send({ msg: "User deleted!" });
+  } catch (err) {
+    next(err);
   }
 };

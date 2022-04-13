@@ -12,7 +12,8 @@ cartoonsRouter.route("/").get(cartoons_controller_1.getCartoons).post(cartoons_c
 cartoonsRouter
     .route("/:cartoon_id")
     .get(cartoons_controller_1.getCartoonById)
-    .patch(cartoons_controller_1.patchCartoonById);
+    .patch(cartoons_controller_1.patchCartoonById)
+    .delete(cartoons_controller_1.deleteCartoonById);
 cartoonsRouter.route("/:cartoon_id/characters").get(characters_controller_1.getCharacters);
 cartoonsRouter.route("/:cartoon_id/comments").get(comments_controller_1.getComments);
 exports.default = cartoonsRouter;

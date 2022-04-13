@@ -39,7 +39,6 @@ export const getComments = async (
       res.status(200).send({ comments });
     }
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };
@@ -89,7 +88,6 @@ export const deleteComment = async (
 
     res.status(204).send({ msg: "Comment deleted!" });
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };

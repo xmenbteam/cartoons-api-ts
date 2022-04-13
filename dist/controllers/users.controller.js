@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postNewUser = exports.getUserByUsername = exports.getAllUsers = void 0;
+exports.deleteUser = exports.postNewUser = exports.getUserByUsername = exports.getAllUsers = void 0;
 const users_model_1 = require("../models/users.model");
 const getAllUsers = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -43,3 +43,14 @@ const postNewUser = ({ body }, res, next) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.postNewUser = postNewUser;
+const deleteUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { username } = req.params;
+        yield (0, users_model_1.removeUser)(username);
+        res.status(204).send({ msg: "User deleted!" });
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.deleteUser = deleteUser;

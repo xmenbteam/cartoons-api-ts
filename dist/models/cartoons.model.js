@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateCartoon = exports.insertCartoon = exports.fetchCartoons = exports.fetchCartoonById = void 0;
+exports.removeCartoonById = exports.updateCartoon = exports.insertCartoon = exports.fetchCartoons = exports.fetchCartoonById = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 const query_utils_1 = require("../utils/query-utils");
 const util_functions_1 = require("../utils/util-functions");
@@ -99,3 +99,17 @@ const updateCartoon = ({ cartoon_id, inc_votes, }) => __awaiter(void 0, void 0, 
     return response.rows[0];
 });
 exports.updateCartoon = updateCartoon;
+const removeCartoonById = (cartoon_id) => __awaiter(void 0, void 0, void 0, function* () {
+    let queryStr = `
+  DELETE FROM cartoons
+  WHERE cartoon_id = $1
+  `;
+    const values = [cartoon_id];
+    const result = yield connection_1.default.query(queryStr, values);
+    // rowCount === number of deleted rows
+    const { rowCount } = result;
+    if (!rowCount)
+        return Promise.reject({ status: 404, msg: "Cartoon not found!" });
+    return result;
+});
+exports.removeCartoonById = removeCartoonById;

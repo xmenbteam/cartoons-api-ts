@@ -29,3 +29,17 @@ export const insertUser = async ({ name, username, avatar_url }: DB_User) => {
 
   return response.rows[0];
 };
+export const removeUser = async (username: string) => {
+  let queryStr = `
+  DELETE FROM users
+  WHERE username = $1
+  `;
+  const values = [username];
+
+  const result = await db.query(queryStr, values);
+  // rowCount === number of deleted rows
+  const { rowCount } = result;
+  if (!rowCount) return Promise.reject({ status: 404, msg: "User not found!" });
+
+  return result;
+};

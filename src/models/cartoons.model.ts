@@ -120,3 +120,19 @@ export const updateCartoon = async ({
 
   return response.rows[0];
 };
+
+export const removeCartoonById = async (cartoon_id: string) => {
+  let queryStr = `
+  DELETE FROM cartoons
+  WHERE cartoon_id = $1
+  `;
+  const values = [cartoon_id];
+
+  const result = await db.query(queryStr, values);
+  // rowCount === number of deleted rows
+  const { rowCount } = result;
+  if (!rowCount)
+    return Promise.reject({ status: 404, msg: "Cartoon not found!" });
+
+  return result;
+};

@@ -1,5 +1,6 @@
 import express, { Router } from "express";
 import {
+  deleteCharacterById,
   getCharacterById,
   getCharacters,
   patchCharacterById,
@@ -12,6 +13,7 @@ charactersRouter.route("/").get(getCharacters).post(postCharacter);
 charactersRouter
   .route("/:character_id")
   .get(getCharacterById)
-  .patch(patchCharacterById);
+  .patch(patchCharacterById)
+  .delete(deleteCharacterById);
 
 export default charactersRouter;

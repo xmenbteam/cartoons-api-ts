@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.patchCartoonById = exports.postCartoon = exports.getCartoons = exports.getCartoonById = void 0;
+exports.deleteCartoonById = exports.patchCartoonById = exports.postCartoon = exports.getCartoons = exports.getCartoonById = void 0;
 const cartoons_model_1 = require("../models/cartoons.model");
 const getCartoonById = ({ params }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -67,3 +67,14 @@ const patchCartoonById = ({ body, params }, res, next) => __awaiter(void 0, void
     }
 });
 exports.patchCartoonById = patchCartoonById;
+const deleteCartoonById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { cartoon_id } = req.params;
+        yield (0, cartoons_model_1.removeCartoonById)(cartoon_id);
+        res.status(204).send({ msg: "Cartoon deleted!" });
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.deleteCartoonById = deleteCartoonById;

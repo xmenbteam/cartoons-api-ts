@@ -33,7 +33,6 @@ const getComments = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         }
     }
     catch (err) {
-        console.log(err);
         next(err);
     }
 });
@@ -68,7 +67,6 @@ const deleteComment = (req, res, next) => __awaiter(void 0, void 0, void 0, func
         res.status(204).send({ msg: "Comment deleted!" });
     }
     catch (err) {
-        console.log(err);
         next(err);
     }
 });

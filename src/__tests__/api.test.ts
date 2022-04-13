@@ -65,7 +65,7 @@ describe("Users", () => {
       expect(msg).toBe("User not found!");
     });
   });
-  describe("POST Owner", () => {
+  describe("POST user", () => {
     test("201 - post new user", async () => {
       const newUser = {
         name: "Testy McTestFace",
@@ -95,6 +95,18 @@ describe("Users", () => {
       const { msg } = body;
 
       expect(msg).toBe("Field username cannot be null!");
+    });
+  });
+  describe("DELETE user", () => {
+    test("204 user deleted", async () => {
+      const username = "xmenbteam";
+      await request(app).delete(`/api/users/${username}`);
+
+      const { body } = await request(app).get(`/api/users/${username}`);
+
+      const { msg } = body;
+
+      expect(msg).toBe("User not found!");
     });
   });
 });
@@ -446,6 +458,20 @@ describe("Cartoons", () => {
       expect(cartoon.votes).toBe(36);
     });
   });
+  describe("DELETE cartoon", () => {
+    test("204 cartoon deleted", async () => {
+      const cartoon_id = 3;
+      await request(app).delete(`/api/cartoons/${cartoon_id}`).expect(204);
+
+      const { body: cartoonBody } = await request(app).get(
+        `/api/cartoons/${cartoon_id}`
+      );
+
+      const { msg: cartoonMessage } = cartoonBody;
+
+      expect(cartoonMessage).toBe("Cartoon not found!");
+    });
+  });
 });
 
 describe("Characters", () => {
@@ -627,6 +653,20 @@ describe("Characters", () => {
       expect(msg).toBe("Field cartoon_id cannot be null!");
     });
   });
+  describe("DELETE character", () => {
+    test("204 user deleted", async () => {
+      const character_id = 3;
+      await request(app).delete(`/api/characters/${character_id}`).expect(204);
+
+      const { body } = await request(app).get(
+        `/api/characters/${character_id}`
+      );
+
+      const { msg } = body;
+
+      expect(msg).toBe("Character not found!");
+    });
+  });
 });
 
 describe("Comments", () => {
@@ -801,11 +841,9 @@ describe("Comments", () => {
   describe("DELETE comment", () => {
     test("204 - deleted", async () => {
       const comment_id = 3;
-      await request(app).delete(`/api/comments/${comment_id}`);
+      await request(app).delete(`/api/comments/${comment_id}`).expect(204);
 
       const { body } = await request(app).get(`/api/comments/${comment_id}`);
-
-      console.log(body);
 
       const { msg } = body;
 

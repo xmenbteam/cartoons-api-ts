@@ -105,3 +105,19 @@ export const insertCharacter = async ({
 
   return response.rows[0];
 };
+
+export const removeCharacterById = async (character_id: string) => {
+  let queryStr = `
+  DELETE FROM characters
+  WHERE character_id = $1
+  `;
+  const values = [character_id];
+
+  const result = await db.query(queryStr, values);
+  // rowCount === number of deleted rows
+  const { rowCount } = result;
+  if (!rowCount)
+    return Promise.reject({ status: 404, msg: "Character not found!" });
+
+  return result;
+};

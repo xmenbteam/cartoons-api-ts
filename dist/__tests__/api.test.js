@@ -86,7 +86,7 @@ describe("Users", () => {
             expect(msg).toBe("User not found!");
         }));
     });
-    describe("POST Owner", () => {
+    describe("POST user", () => {
         test("201 - post new user", () => __awaiter(void 0, void 0, void 0, function* () {
             const newUser = {
                 name: "Testy McTestFace",
@@ -112,6 +112,15 @@ describe("Users", () => {
                 .expect(400);
             const { msg } = body;
             expect(msg).toBe("Field username cannot be null!");
+        }));
+    });
+    describe("DELETE user", () => {
+        test("204 user deleted", () => __awaiter(void 0, void 0, void 0, function* () {
+            const username = "xmenbteam";
+            yield (0, supertest_1.default)(app).delete(`/api/users/${username}`);
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/users/${username}`);
+            const { msg } = body;
+            expect(msg).toBe("User not found!");
         }));
     });
 });
@@ -417,6 +426,15 @@ describe("Cartoons", () => {
             expect(cartoon.votes).toBe(36);
         }));
     });
+    describe("DELETE cartoon", () => {
+        test("204 cartoon deleted", () => __awaiter(void 0, void 0, void 0, function* () {
+            const cartoon_id = 3;
+            yield (0, supertest_1.default)(app).delete(`/api/cartoons/${cartoon_id}`).expect(204);
+            const { body: cartoonBody } = yield (0, supertest_1.default)(app).get(`/api/cartoons/${cartoon_id}`);
+            const { msg: cartoonMessage } = cartoonBody;
+            expect(cartoonMessage).toBe("Cartoon not found!");
+        }));
+    });
 });
 describe("Characters", () => {
     describe("GET Characters", () => {
@@ -557,6 +575,15 @@ describe("Characters", () => {
                 .expect(400);
             const { msg } = body;
             expect(msg).toBe("Field cartoon_id cannot be null!");
+        }));
+    });
+    describe("DELETE character", () => {
+        test("204 user deleted", () => __awaiter(void 0, void 0, void 0, function* () {
+            const character_id = 3;
+            yield (0, supertest_1.default)(app).delete(`/api/characters/${character_id}`).expect(204);
+            const { body } = yield (0, supertest_1.default)(app).get(`/api/characters/${character_id}`);
+            const { msg } = body;
+            expect(msg).toBe("Character not found!");
         }));
     });
 });
@@ -701,9 +728,8 @@ describe("Comments", () => {
     describe("DELETE comment", () => {
         test("204 - deleted", () => __awaiter(void 0, void 0, void 0, function* () {
             const comment_id = 3;
-            yield (0, supertest_1.default)(app).delete(`/api/comments/${comment_id}`);
+            yield (0, supertest_1.default)(app).delete(`/api/comments/${comment_id}`).expect(204);
             const { body } = yield (0, supertest_1.default)(app).get(`/api/comments/${comment_id}`);
-            console.log(body);
             const { msg } = body;
             expect(msg).toBe("Comment not found!");
         }));

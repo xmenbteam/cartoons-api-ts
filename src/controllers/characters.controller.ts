@@ -3,6 +3,7 @@ import {
   fetchCharacterById,
   fetchCharacters,
   insertCharacter,
+  removeCharacterById,
   updateCharacterById,
 } from "../models/characters.model";
 import { FetchCharacterParams, PostCharacterParams } from "../types/data-types";
@@ -68,6 +69,22 @@ export const postCharacter = async (
     const character = await insertCharacter({ name, cartoon_id, img_url });
 
     res.status(201).send({ character });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteCharacterById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { character_id } = req.params;
+
+    await removeCharacterById(character_id);
+
+    res.status(204).send({ msg: "Character deleted!" });
   } catch (err) {
     next(err);
   }

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postCharacter = exports.patchCharacterById = exports.getCharacters = exports.getCharacterById = void 0;
+exports.deleteCharacterById = exports.postCharacter = exports.patchCharacterById = exports.getCharacters = exports.getCharacterById = void 0;
 const characters_model_1 = require("../models/characters.model");
 const util_functions_1 = require("../utils/util-functions");
 const getCharacterById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -60,3 +60,14 @@ const postCharacter = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.postCharacter = postCharacter;
+const deleteCharacterById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { character_id } = req.params;
+        yield (0, characters_model_1.removeCharacterById)(character_id);
+        res.status(204).send({ msg: "Character deleted!" });
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.deleteCharacterById = deleteCharacterById;

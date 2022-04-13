@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.insertCharacter = exports.updateCharacterById = exports.fetchCharacters = exports.fetchCharacterById = void 0;
+exports.removeCharacterById = exports.insertCharacter = exports.updateCharacterById = exports.fetchCharacters = exports.fetchCharacterById = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 const query_utils_1 = require("../utils/query-utils");
 const util_functions_1 = require("../utils/util-functions");
@@ -89,3 +89,17 @@ const insertCharacter = ({ name, cartoon_id, img_url, }) => __awaiter(void 0, vo
     return response.rows[0];
 });
 exports.insertCharacter = insertCharacter;
+const removeCharacterById = (character_id) => __awaiter(void 0, void 0, void 0, function* () {
+    let queryStr = `
+  DELETE FROM characters
+  WHERE character_id = $1
+  `;
+    const values = [character_id];
+    const result = yield connection_1.default.query(queryStr, values);
+    // rowCount === number of deleted rows
+    const { rowCount } = result;
+    if (!rowCount)
+        return Promise.reject({ status: 404, msg: "Character not found!" });
+    return result;
+});
+exports.removeCharacterById = removeCharacterById;

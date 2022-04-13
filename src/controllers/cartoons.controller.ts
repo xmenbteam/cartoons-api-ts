@@ -3,6 +3,7 @@ import {
   fetchCartoonById,
   fetchCartoons,
   insertCartoon,
+  removeCartoonById,
   updateCartoon,
 } from "../models/cartoons.model";
 import { FetchCartoonParams, PostCartoonParams } from "../types/data-types";
@@ -79,6 +80,22 @@ export const patchCartoonById = async (
     const cartoon = await updateCartoon({ cartoon_id, inc_votes });
 
     res.status(201).send({ cartoon });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteCartoonById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { cartoon_id } = req.params;
+
+    await removeCartoonById(cartoon_id);
+
+    res.status(204).send({ msg: "Cartoon deleted!" });
   } catch (err) {
     next(err);
   }

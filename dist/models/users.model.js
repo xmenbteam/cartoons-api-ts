@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.insertUser = exports.fetchUserByUsername = exports.fetchUsers = void 0;
+exports.removeUser = exports.insertUser = exports.fetchUserByUsername = exports.fetchUsers = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 const fetchUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     let queryStr = `SELECT * FROM users`;
@@ -36,3 +36,17 @@ const insertUser = ({ name, username, avatar_url }) => __awaiter(void 0, void 0,
     return response.rows[0];
 });
 exports.insertUser = insertUser;
+const removeUser = (username) => __awaiter(void 0, void 0, void 0, function* () {
+    let queryStr = `
+  DELETE FROM users
+  WHERE username = $1
+  `;
+    const values = [username];
+    const result = yield connection_1.default.query(queryStr, values);
+    // rowCount === number of deleted rows
+    const { rowCount } = result;
+    if (!rowCount)
+        return Promise.reject({ status: 404, msg: "User not found!" });
+    return result;
+});
+exports.removeUser = removeUser;

@@ -10,5 +10,6 @@ charactersRouter.route("/").get(characters_controller_1.getCharacters).post(char
 charactersRouter
     .route("/:character_id")
     .get(characters_controller_1.getCharacterById)
-    .patch(characters_controller_1.patchCharacterById);
+    .patch(characters_controller_1.patchCharacterById)
+    .delete(characters_controller_1.deleteCharacterById);
 exports.default = charactersRouter;

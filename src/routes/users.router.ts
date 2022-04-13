@@ -1,5 +1,6 @@
 import express, { Router } from "express";
 import {
+  deleteUser,
   getAllUsers,
   getUserByUsername,
   postNewUser,
@@ -8,6 +9,6 @@ import {
 const usersRouter: Router = express.Router();
 
 usersRouter.route("/").get(getAllUsers).post(postNewUser);
-usersRouter.route("/:username").get(getUserByUsername);
+usersRouter.route("/:username").get(getUserByUsername).delete(deleteUser);
 
 export default usersRouter;

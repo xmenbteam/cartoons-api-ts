@@ -1,5 +1,6 @@
 import express, { Router } from "express";
 import {
+  deleteCartoonById,
   getCartoonById,
   getCartoons,
   patchCartoonById,
@@ -14,7 +15,8 @@ cartoonsRouter.route("/").get(getCartoons).post(postCartoon);
 cartoonsRouter
   .route("/:cartoon_id")
   .get(getCartoonById)
-  .patch(patchCartoonById);
+  .patch(patchCartoonById)
+  .delete(deleteCartoonById);
 
 cartoonsRouter.route("/:cartoon_id/characters").get(getCharacters);
 cartoonsRouter.route("/:cartoon_id/comments").get(getComments);
