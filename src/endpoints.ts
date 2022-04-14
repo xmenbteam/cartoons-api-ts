@@ -10,10 +10,10 @@ export const endPoints = {
       queries: [],
       exampleResponse: {
         users: [
-          { username: "butter_bridge" },
-          { username: "icellusedkars" },
-          { username: "rogersop" },
-          { username: "lurker" },
+          { username: "test_user" },
+          { username: "omigoditsme" },
+          { username: "wowlookathim" },
+          { username: "coolbeans" },
         ],
       },
     },
