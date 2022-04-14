@@ -305,10 +305,19 @@ describe("Cartoons", () => {
                     }));
                 });
             }));
-            test("GET all cartoons by studio_id", () => __awaiter(void 0, void 0, void 0, function* () {
+            test("GET all cartoons by studio_id - params", () => __awaiter(void 0, void 0, void 0, function* () {
                 const studio_id = 2;
                 const { body } = yield (0, supertest_1.default)(app)
                     .get(`/api/studios/${studio_id}/cartoons`)
+                    .expect(200);
+                const { cartoons } = body;
+                expect(cartoons.cartoons.every((cartoon) => cartoon.studio_id === 2)).toBe(true);
+                expect(cartoons.cartoons.length).toBe(3);
+            }));
+            test("GET all cartoons by studio_id - query", () => __awaiter(void 0, void 0, void 0, function* () {
+                const studio_id = 2;
+                const { body } = yield (0, supertest_1.default)(app)
+                    .get(`/api/cartoons?studio_id=${studio_id}`)
                     .expect(200);
                 const { cartoons } = body;
                 expect(cartoons.cartoons.every((cartoon) => cartoon.studio_id === 2)).toBe(true);

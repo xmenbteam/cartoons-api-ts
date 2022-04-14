@@ -30,8 +30,19 @@ export const getCartoons = async (
   next: NextFunction
 ) => {
   try {
-    const { sort_by, order_by, page, limit }: FetchCartoonParams = query;
-    const { studio_id } = params;
+    let studio_id;
+
+    const {
+      sort_by,
+      order_by,
+      page,
+      limit,
+      studio_id: studioIdQuery,
+    }: FetchCartoonParams = query;
+    const { studio_id: studioIdParams } = params;
+
+    if (studioIdQuery) studio_id = studioIdQuery;
+    if (studioIdParams) studio_id = studioIdParams;
 
     const cartoons = await fetchCartoons({
       sort_by,

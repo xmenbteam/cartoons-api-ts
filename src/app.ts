@@ -12,7 +12,7 @@ import apiRouter from "./routes/api.router";
 const app: Application = express();
 
 app.use(express.json());
-// app.use(cors);
+app.use(cors);
 
 app.use("/", welcomeRouter);
 app.use("/api", apiRouter);

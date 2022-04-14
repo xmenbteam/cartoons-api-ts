@@ -13,10 +13,10 @@ exports.endPoints = {
             queries: [],
             exampleResponse: {
                 users: [
-                    { username: "butter_bridge" },
-                    { username: "icellusedkars" },
-                    { username: "rogersop" },
-                    { username: "lurker" },
+                    { username: "test_user" },
+                    { username: "omigoditsme" },
+                    { username: "wowlookathim" },
+                    { username: "coolbeans" },
                 ],
             },
         },
@@ -76,6 +76,27 @@ exports.endPoints = {
                     votes: 3,
                     cartoon_count: 2,
                 },
+            },
+        },
+        "GET /api/studios/:studio_id/cartoons": {
+            description: "Serves an array of all cartoons with the corresponding studio_id",
+            exampleResponse: {
+                cartoons: [
+                    {
+                        cartoon_id: 7,
+                        name: "Test Cartoon 7",
+                        votes: 100,
+                        created_at: "1995-02-26T00:00:07.800Z",
+                        description: "Wow testy",
+                        img_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Dexter-logo.png/500px-Dexter-logo.png",
+                        studio_id: 3,
+                        character_count: 3,
+                        full_count: 10,
+                    },
+                ],
+                currentPage: 1,
+                cartoonsPerPage: 10,
+                pageTotal: 1,
             },
         },
         "POST /api/studios": {
@@ -142,6 +163,25 @@ exports.endPoints = {
                 img_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Dexter-logo.png/500px-Dexter-logo.png",
                 studio_id: 2,
                 character_count: 2,
+            },
+        },
+        "GET /api/cartoons/:cartoon_id/comments": {
+            description: "Serves an object containing an array of comments matching the corresponding cartoon_id, the current page, number of items per page, and total number of pages. Serves back default 10 per page sorted by created_at asc ",
+            exampleResponse: {
+                comments: [
+                    {
+                        comment_id: 37,
+                        author: "sirkevlar",
+                        cartoon_id: 1,
+                        body: "neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio",
+                        votes: 22,
+                        created_at: "2021-03-22T18:50:26.000Z",
+                        full_count: 2,
+                    },
+                ],
+                currentPage: 1,
+                commmentsPerPage: 10,
+                pageTotal: 1,
             },
         },
         "PATCH /api/cartoons/:cartoon_id": {

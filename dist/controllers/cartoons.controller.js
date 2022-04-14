@@ -24,8 +24,13 @@ const getCartoonById = ({ params }, res, next) => __awaiter(void 0, void 0, void
 exports.getCartoonById = getCartoonById;
 const getCartoons = ({ query, params }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { sort_by, order_by, page, limit } = query;
-        const { studio_id } = params;
+        let studio_id;
+        const { sort_by, order_by, page, limit, studio_id: studioIdQuery, } = query;
+        const { studio_id: studioIdParams } = params;
+        if (studioIdQuery)
+            studio_id = studioIdQuery;
+        if (studioIdParams)
+            studio_id = studioIdParams;
         const cartoons = yield (0, cartoons_model_1.fetchCartoons)({
             sort_by,
             order_by,
