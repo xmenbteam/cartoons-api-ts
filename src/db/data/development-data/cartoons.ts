@@ -57,7 +57,8 @@ const cartoonsData: DB_Cartoon[] = [
     created_at: new Date(-292035600000),
     description:
       "The Flintstones is an American animated sitcom produced by Hanna-Barbera Productions. The series takes place in a romanticized Stone Age setting and follows the activities of the titular family, the Flintstones, and their next-door neighbors, the Rubbles. It was originally broadcast on ABC from September 30, 1960, to April 1, 1966, and was the first animated series to hold a prime-time slot on television",
-    img_url: "https://en.wikipedia.org/wiki/File:The_Flintstones.jpg",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/en/5/51/The_Flintstones.jpg",
     studio_id: 2,
   },
   {
