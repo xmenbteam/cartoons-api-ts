@@ -113,7 +113,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Kim Possible",
-    studio_id: 3,
+    studio_id: 4,
     votes: 6,
     description:
       "Kim Possible is an American animated action comedy-adventure television series created by Bob Schooley and Mark McCorkle for Disney Channel. The title character is a teenage girl tasked with fighting crime on a regular basis while coping with everyday issues commonly associated with adolescence. Kim is aided by her clumsy best friend and eventual love interest, Ron Stoppable, his pet naked mole rat Rufus, and ten year-old computer genius Wade. Known collectively as Team Possible, Kim and Ron's missions primarily require them to thwart the evil plans of the mad scientist–supervillain duo Dr. Drakken and his sidekick Shego.",
@@ -123,7 +123,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Phineas & Ferb",
-    studio_id: 3,
+    studio_id: 4,
     votes: 0,
     description:
       "Phineas and Ferb is an American animated musical-comedy television series created by Dan Povenmire and Jeff 'Swampy' Marsh for Disney Channel and Disney XD. Produced by Disney Television Animation, the series was originally broadcast as a one-episode preview on August 17, 2007, and again previewed on September 28, 2007, the series officially premiered on February 1, 2008, on Disney Channel, running until June 12, 2015.",
@@ -133,7 +133,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "DuckTales",
-    studio_id: 3,
+    studio_id: 4,
     votes: 0,
     description:
       "DuckTales is an American animated television series produced by Disney Television Animation. The original cartoon series premiered on syndication and on Disney Channel on September 18, 1987 and ran for a total of 100 episodes over four seasons, with its final episode airing on November 28, 1990. Based upon Uncle Scrooge and other Duck universe comic books created by Carl Barks, the show follows Scrooge McDuck, his three grandnephews Huey, Dewey, and Louie, and close friends of the group, on various adventures, most of which either involve seeking out treasure or thwarting the efforts of villains seeking to steal Scrooge's fortune or his Number One Dime.",
@@ -143,7 +143,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Star Wars: Rebels",
-    studio_id: 3,
+    studio_id: 4,
     votes: 0,
     description:
       "Star Wars Rebels is an American 3D animated science fiction television series produced by Lucasfilm Animation and set in the Star Wars universe, taking place 14 years after Star Wars Episode III: Revenge of the Sith and 5 years before Star Wars Episode IV: A New Hope. It takes place during the dark times, when the Galactic Empire is hunting down the last of the Jedi while a fledgling rebellion against the Empire is emerging. The visual style of the series is inspired by the original Star Wars trilogy concept art by Ralph McQuarrie. The series features new characters, along with some from the original trilogy and from the previous animated series, The Clone Wars.",
@@ -153,7 +153,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Beavis and Butt-Head",
-    studio_id: 4,
+    studio_id: 5,
     votes: 0,
     description:
       "Beavis and Butt-Head is an American adult animated comedy television series created by Mike Judge. The series follows the eponymous Beavis and Butt-Head, both voiced by Judge, a pair of teenage slackers characterized by their apathy, lack of intelligence, lowbrow humor, and failure to attract women.",
@@ -163,7 +163,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Daria",
-    studio_id: 4,
+    studio_id: 5,
     votes: 0,
     description:
       "Daria is an American adult animated sitcom created by Glenn Eichler and Susie Lewis Lynn. The series ran from March 3, 1997 to January 21, 2002 on MTV. It is a spin-off of Mike Judge's earlier animated series, Beavis and Butt-Head, in which Daria appeared as a recurring character. Although Judge allowed the character to star in a spin-off, he had no involvement in the production of Daria himself, as he was busy working on King of the Hill",
@@ -173,7 +173,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "The Ren & Stimpy Show",
-    studio_id: 4,
+    studio_id: 5,
     votes: 0,
     description:
       "The Ren & Stimpy Show (also known simply as Ren & Stimpy) is an American animated television series created by Canadian animator John Kricfalusi. Originally produced by Spümcø for Nickelodeon, the series aired from August 11, 1991, to December 16, 1995, with a total of five seasons and 51 episodes. The series follows the adventures of the title characters: Ren Höek, an emotionally unstable and sociopathic Chihuahua; and Stimpy, a good-natured yet dimwitted cat.",
@@ -183,7 +183,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "The Simpsons",
-    studio_id: 5,
+    studio_id: 6,
     votes: 0,
     description:
       "The Simpsons is an American animated sitcom created by Matt Groening for the Fox Broadcasting Company. The series is a satirical depiction of American life, epitomized by the Simpson family, which consists of Homer, Marge, Bart, Lisa, and Maggie. The show is set in the fictional town of Springfield and parodies American culture and society, television, and the human condition.",
@@ -193,7 +193,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Spider-Man TAS",
-    studio_id: 5,
+    studio_id: 6,
     votes: 0,
     description:
       "Spider-Man, also known as Spider-Man: The Animated Series (Spider-Man TAS for short), is an American superhero animated television series based on the Marvel Comics superhero of the same name. The series aired on the Fox Kids Network from November 19, 1994, to January 31, 1998, for a total of five seasons comprising sixty-five episodes, and ran reruns on Toon Disney's Jetix block and on Disney XD. The series was produced by Marvel Films Animation, along with animation work by Tokyo Movie Shinsha (TMS).",
@@ -203,7 +203,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "X-Men TAS",
-    studio_id: 5,
+    studio_id: 6,
     votes: 0,
     description:
       "X-Men (also known as X-Men: The Animated Series) is an animated superhero television series which debuted on October 31, 1992, in the United States on the Fox Kids Network.[5] X-Men was Marvel Comics' second attempt at an animated X-Men TV series after the pilot, X-Men: Pryde of the X-Men, was not picked up.[6] A revival of the series, entitled X-Men '97, is set to be released on Disney+ in 2023.",
@@ -213,7 +213,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Futurama",
-    studio_id: 5,
+    studio_id: 6,
     votes: 0,
     description:
       "Futurama is an American animated science fiction sitcom created by Matt Groening that premiered on Fox on March 28, 1999. The series follows the adventures of the professional slacker Philip J. Fry, who is cryogenically preserved for 1000 years and is revived in the 31st century. Fry finds work at an interplanetary delivery company, working alongside the one-eyed Leela and robot Bender. The series was envisioned by Groening in the mid-1990s while working on The Simpsons; he brought David X. Cohen aboard to develop storylines and characters to pitch the show to Fox.",
@@ -233,7 +233,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Bob's Burgers",
-    studio_id: 5,
+    studio_id: 6,
     votes: 0,
     description:
       "Bob's Burgers is an American animated television sitcom created by Loren Bouchard for the Fox Broadcasting Company. The series centers on the Belcher family—parents Bob and Linda and their three children, Tina, Gene, and Louise—who run a hamburger restaurant and often go on adventures of many kinds. The show was conceived by Bouchard after he developed Home Movies. Bob's Burgers is a production by Bento Box Entertainment and 20th Television Animation.",
@@ -243,7 +243,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Spongebob Squarepants",
-    studio_id: 6,
+    studio_id: 7,
     votes: 0,
     description:
       "SpongeBob SquarePants (also simply referred to as SpongeBob) is an American animated comedy television series created by marine science educator and animator Stephen Hillenburg for Nickelodeon. The series chronicles the adventures of the title character and his aquatic friends in the fictional underwater city of Bikini Bottom. Being the fifth-longest-running American animated series, its high popularity has made it a media franchise. It is the highest rated series to air on Nickelodeon as well as the most profitable property for Paramount Consumer Products, having generated over $13 billion in merchandising revenue as of 2019.",
@@ -253,7 +253,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Rugrats",
-    studio_id: 6,
+    studio_id: 7,
     votes: 0,
     description:
       "Rugrats is an American animated television series created by Arlene Klasky, Gábor Csupó, and Paul Germain for Nickelodeon. The show focuses on a group of toddlers most prominently—Tommy, Chuckie, Angelica, and twins Phil and Lil—and their day-to-day lives, usually involving life experiences that become much greater adventures in the imaginations of the main characters.",
@@ -262,7 +262,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Doug",
-    studio_id: 6,
+    studio_id: 7,
     votes: 0,
     description:
       "Doug is an animated television series created by Jim Jinkins and produced by Jumbo Pictures. The show focuses on the early adolescent life of its title character, Douglas 'Doug' Funnie, who experiences common predicaments while attending school in his new hometown of Bluffington. Doug narrates each story in his journal, and the show incorporates many imagination sequences. The series addresses numerous topics, including trying to fit in, platonic and romantic relationships, self-esteem, bullying, and rumors. Many episodes center on Doug's attempts to impress his classmate and crush, Patti Mayonnaise.",
@@ -272,7 +272,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Hey Arnold!",
-    studio_id: 6,
+    studio_id: 7,
     votes: 0,
     description:
       "Hey Arnold! is an American animated comedy television series created by Craig Bartlett. It originally aired on Nickelodeon from October 7, 1996, to June 8, 2004. The show centers on a fourth grader named Arnold Shortman, who lives with his grandparents in an inner-city tenement in Hillwood, Washington. Episodes center on his experiences navigating urban life while dealing with the problems he and his friends encounter. Many episodes however, focuses on other characters, including major, secondary, supporting, and even minor characters get their own episodes.",
@@ -282,7 +282,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Fairly Odd Parents",
-    studio_id: 6,
+    studio_id: 7,
     votes: 0,
     description:
       "The Fairly OddParents is an American animated television series created by Butch Hartman for Nickelodeon. The series follows and describes the adventures of Timmy Turner, a 10-year-old boy with two fairy godparents named Cosmo and Wanda who grant him wishes to solve his everyday problems.",
@@ -292,7 +292,7 @@ const cartoonsData: DB_Cartoon[] = [
   },
   {
     name: "Penny Crayon",
-    studio_id: 7,
+    studio_id: 8,
     votes: 0,
     description:
       "Penny Crayon is a 1989 British children's television series that tells the adventures of a very intellectual and well-meaning (but occasionally mischievous) school-girl from London who loves to draw, and her escapades accompanied by her best friend, Dennis. Using the magic crayons that she always carries with her, she brings everything that she ever draws to life, to either help them on their adventures or to get them out of tricky situations, and usually creating a world of chaos until it is either erased or washed away.",
