@@ -36,7 +36,7 @@ const createTables = () => __awaiter(void 0, void 0, void 0, function* () {
       name VARCHAR(255) NOT NULL,
       img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg',
       description VARCHAR NOT NULL,
-      votes INT DEFAULT 0
+      votes INT DEFAULT 0 NOT NULL
   )
   `);
     yield Promise.all([createUsers, createStudios]);
@@ -45,7 +45,7 @@ const createTables = () => __awaiter(void 0, void 0, void 0, function* () {
   (
       cartoon_id SERIAL PRIMARY KEY NOT NULL,
       name VARCHAR(255) NOT NULL,
-      votes INT DEFAULT 0,
+      votes INT DEFAULT 0 NOT NULL,
       created_at TIMESTAMP DEFAULT NOW(),
       description VARCHAR NOT NULL,
       img_url TEXT DEFAULT 'https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg',
@@ -58,7 +58,7 @@ const createTables = () => __awaiter(void 0, void 0, void 0, function* () {
   (
       character_id SERIAL PRIMARY KEY NOT NULL,
       name VARCHAR (255) NOT NULL,
-      votes INT DEFAULT 0,
+      votes INT DEFAULT 0 NOT NULL,
       cartoon_id INT NOT NULL,
       FOREIGN KEY (cartoon_id) REFERENCES cartoons(cartoon_id) ON DELETE CASCADE,
       img_url TEXT DEFAULT 'https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg'
@@ -73,7 +73,7 @@ const createTables = () => __awaiter(void 0, void 0, void 0, function* () {
       cartoon_id INT NOT NULL,
       FOREIGN KEY (cartoon_id) REFERENCES cartoons(cartoon_id) ON DELETE CASCADE,
       body TEXT NOT NULL,
-      votes INT DEFAULT 0,
+      votes INT DEFAULT 0 NOT NULL,
       created_at TIMESTAMP DEFAULT NOW()
   )
   `);
