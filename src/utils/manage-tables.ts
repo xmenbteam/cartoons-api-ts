@@ -23,7 +23,7 @@ const createTables = async () => {
       name VARCHAR(255) NOT NULL,
       img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg',
       description VARCHAR NOT NULL,
-      votes INT DEFAULT 0
+      votes INT DEFAULT 0 NOT NULL
   )
   `);
 
@@ -34,7 +34,7 @@ const createTables = async () => {
   (
       cartoon_id SERIAL PRIMARY KEY NOT NULL,
       name VARCHAR(255) NOT NULL,
-      votes INT DEFAULT 0,
+      votes INT DEFAULT 0 NOT NULL,
       created_at TIMESTAMP DEFAULT NOW(),
       description VARCHAR NOT NULL,
       img_url TEXT DEFAULT 'https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg',
@@ -48,7 +48,7 @@ const createTables = async () => {
   (
       character_id SERIAL PRIMARY KEY NOT NULL,
       name VARCHAR (255) NOT NULL,
-      votes INT DEFAULT 0,
+      votes INT DEFAULT 0 NOT NULL,
       cartoon_id INT NOT NULL,
       FOREIGN KEY (cartoon_id) REFERENCES cartoons(cartoon_id) ON DELETE CASCADE,
       img_url TEXT DEFAULT 'https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg'
@@ -64,7 +64,7 @@ const createTables = async () => {
       cartoon_id INT NOT NULL,
       FOREIGN KEY (cartoon_id) REFERENCES cartoons(cartoon_id) ON DELETE CASCADE,
       body TEXT NOT NULL,
-      votes INT DEFAULT 0,
+      votes INT DEFAULT 0 NOT NULL,
       created_at TIMESTAMP DEFAULT NOW()
   )
   `);
