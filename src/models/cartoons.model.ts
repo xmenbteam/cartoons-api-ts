@@ -17,12 +17,12 @@ export const fetchCartoonById = async (cartoon_id: string) => {
   LIMIT 1`;
   const values = [cartoon_id];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  if (!response.rows[0])
+  if (!rows[0])
     return Promise.reject({ status: 404, msg: "Cartoon not found!" });
 
-  return response.rows[0];
+  return rows[0];
 };
 
 export const fetchCartoons = async ({
@@ -65,20 +65,18 @@ export const fetchCartoons = async ({
   LIMIT $1 OFFSET $2
   `;
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  const cartoons = response.rows;
-
-  if (studio_id && !cartoons[0])
+  if (studio_id && !rows[0])
     return Promise.reject({ status: 404, msg: "Studio does not exist!" });
 
-  if (!cartoons[0]) return Promise.reject({ status: 404, msg: "Not found!" });
+  if (!rows[0]) return Promise.reject({ status: 404, msg: "Not found!" });
 
   const returnedObject = {
-    cartoons,
+    cartoons: rows,
     currentPage: Number(page),
     cartoonsPerPage: limit,
-    pageTotal: Math.ceil(cartoons[0].full_count / limit),
+    pageTotal: Math.ceil(rows[0].full_count / limit),
   };
 
   return returnedObject;
@@ -99,9 +97,9 @@ export const insertCartoon = async ({
   `;
   const values = [name, description, img_url, studio_id];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  return response.rows[0];
+  return rows[0];
 };
 
 export const updateCartoon = async ({
@@ -116,9 +114,9 @@ export const updateCartoon = async ({
   `;
   const values = [inc_votes, cartoon_id];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  return response.rows[0];
+  return rows[0];
 };
 
 export const removeCartoonById = async (cartoon_id: string) => {

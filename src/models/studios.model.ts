@@ -40,15 +40,13 @@ export const fetchStudios = async ({
   LIMIT $1 OFFSET $2
   `;
 
-  const response = await db.query(query, values);
-
-  const studios = response.rows;
+  const { rows } = await db.query(query, values);
 
   const totalStudiosObject = {
-    studios,
+    studios: rows,
     currentPage: page,
     studiosPerPage: limit,
-    pageTotal: Math.ceil(studios[0].full_count / limit),
+    pageTotal: Math.ceil(rows[0].full_count / limit),
   };
 
   return totalStudiosObject;
@@ -66,11 +64,11 @@ export const fetchStudioById = async (
   LIMIT 1;
   `;
   const values = [studio_id];
-  const studio = await db.query(query, values);
+  const { rows } = await db.query(query, values);
 
-  if (!studio.rows[0])
+  if (!rows[0])
     return Promise.reject({ status: 404, msg: "Studio not found!" });
-  return studio.rows[0];
+  return rows[0];
 };
 
 export const updateStudioById = async (
@@ -85,11 +83,11 @@ export const updateStudioById = async (
   `;
   let values = [inc_votes, studio_id];
 
-  const studio = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  if (!studio.rows[0])
+  if (!rows[0])
     return Promise.reject({ status: 404, msg: "Studio not found!" });
-  return studio.rows[0];
+  return rows[0];
 };
 
 export const insertStudio = async ({
@@ -102,9 +100,9 @@ export const insertStudio = async ({
   `;
   const values = [name, img_url, description];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  return response.rows[0];
+  return rows[0];
 };
 
 export const removeStudioById = async (studio_id: string) => {
@@ -113,7 +111,7 @@ export const removeStudioById = async (studio_id: string) => {
   `;
   const values = [studio_id];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  return response.rows;
+  return rows;
 };

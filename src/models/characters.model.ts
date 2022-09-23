@@ -7,12 +7,12 @@ export const fetchCharacterById = async (character_id: string) => {
   const queryStr = `SELECT * FROM characters WHERE character_id = $1;`;
   const values = [character_id];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  if (!response.rows[0])
+  if (!rows[0])
     return Promise.reject({ status: 404, msg: "Character not found!" });
 
-  return response.rows[0];
+  return rows[0];
 };
 
 export const fetchCharacters = async ({
@@ -54,9 +54,9 @@ export const fetchCharacters = async ({
   ORDER BY ${sort_by} ${order_by}
   LIMIT $1 OFFSET $2
   ;`;
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  const characters = response.rows;
+  const characters = rows;
 
   const returnObj = {
     characters,
@@ -81,12 +81,12 @@ export const updateCharacterById = async (
 
   const values = [inc_votes, character_id];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  if (!response.rows[0])
+  if (!rows[0])
     return Promise.reject({ status: 404, msg: "Character not found!" });
 
-  return response.rows[0];
+  return rows[0];
 };
 
 export const insertCharacter = async ({
@@ -101,9 +101,9 @@ export const insertCharacter = async ({
   `;
   const values = [name, cartoon_id, img_url];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  return response.rows[0];
+  return rows[0];
 };
 
 export const removeCharacterById = async (character_id: string) => {

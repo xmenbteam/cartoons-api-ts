@@ -39,13 +39,12 @@ const fetchStudios = ({ sort_by = "studio_id", order_by = "asc", limit = 10, pag
   ORDER BY ${sort_by} ${order_by}
   LIMIT $1 OFFSET $2
   `;
-    const response = yield connection_1.default.query(query, values);
-    const studios = response.rows;
+    const { rows } = yield connection_1.default.query(query, values);
     const totalStudiosObject = {
-        studios,
+        studios: rows,
         currentPage: page,
         studiosPerPage: limit,
-        pageTotal: Math.ceil(studios[0].full_count / limit),
+        pageTotal: Math.ceil(rows[0].full_count / limit),
     };
     return totalStudiosObject;
 });
@@ -60,10 +59,10 @@ const fetchStudioById = (studio_id) => __awaiter(void 0, void 0, void 0, functio
   LIMIT 1;
   `;
     const values = [studio_id];
-    const studio = yield connection_1.default.query(query, values);
-    if (!studio.rows[0])
+    const { rows } = yield connection_1.default.query(query, values);
+    if (!rows[0])
         return Promise.reject({ status: 404, msg: "Studio not found!" });
-    return studio.rows[0];
+    return rows[0];
 });
 exports.fetchStudioById = fetchStudioById;
 const updateStudioById = (studio_id, inc_votes) => __awaiter(void 0, void 0, void 0, function* () {
@@ -74,10 +73,10 @@ const updateStudioById = (studio_id, inc_votes) => __awaiter(void 0, void 0, voi
   RETURNING *
   `;
     let values = [inc_votes, studio_id];
-    const studio = yield connection_1.default.query(queryStr, values);
-    if (!studio.rows[0])
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    if (!rows[0])
         return Promise.reject({ status: 404, msg: "Studio not found!" });
-    return studio.rows[0];
+    return rows[0];
 });
 exports.updateStudioById = updateStudioById;
 const insertStudio = ({ name, img_url, description, }) => __awaiter(void 0, void 0, void 0, function* () {
@@ -85,8 +84,8 @@ const insertStudio = ({ name, img_url, description, }) => __awaiter(void 0, void
   INSERT INTO studios (name, img_url, description) VALUES ($1,$2,$3) RETURNING *;
   `;
     const values = [name, img_url, description];
-    const response = yield connection_1.default.query(queryStr, values);
-    return response.rows[0];
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    return rows[0];
 });
 exports.insertStudio = insertStudio;
 const removeStudioById = (studio_id) => __awaiter(void 0, void 0, void 0, function* () {
@@ -94,7 +93,7 @@ const removeStudioById = (studio_id) => __awaiter(void 0, void 0, void 0, functi
   DELETE FROM studios * WHERE studio_id = $1
   `;
     const values = [studio_id];
-    const response = yield connection_1.default.query(queryStr, values);
-    return response.rows;
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    return rows;
 });
 exports.removeStudioById = removeStudioById;

@@ -16,24 +16,24 @@ exports.removeUser = exports.insertUser = exports.fetchUserByUsername = exports.
 const connection_1 = __importDefault(require("../db/connection"));
 const fetchUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     let queryStr = `SELECT * FROM users`;
-    const response = yield connection_1.default.query(queryStr);
-    return response.rows;
+    const { rows } = yield connection_1.default.query(queryStr);
+    return rows;
 });
 exports.fetchUsers = fetchUsers;
 const fetchUserByUsername = (username) => __awaiter(void 0, void 0, void 0, function* () {
     let queryStr = `SELECT * FROM users WHERE username = $1 LIMIT 1`;
     const values = [username];
-    const response = yield connection_1.default.query(queryStr, values);
-    if (!response.rows[0])
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    if (!rows[0])
         return Promise.reject({ status: 404, msg: "User not found!" });
-    return response.rows[0];
+    return rows[0];
 });
 exports.fetchUserByUsername = fetchUserByUsername;
 const insertUser = ({ name, username, avatar_url }) => __awaiter(void 0, void 0, void 0, function* () {
     let queryStr = `INSERT INTO users (name, username, avatar_url) VALUES ($1,$2,$3) RETURNING *`;
     let values = [name, username, avatar_url];
-    const response = yield connection_1.default.query(queryStr, values);
-    return response.rows[0];
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    return rows[0];
 });
 exports.insertUser = insertUser;
 const removeUser = (username) => __awaiter(void 0, void 0, void 0, function* () {

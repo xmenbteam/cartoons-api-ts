@@ -11,12 +11,12 @@ export const fetchCommentById = async (comment_id: string) => {
     `;
   const values = [comment_id];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  if (!response.rows[0])
+  if (!rows[0])
     return Promise.reject({ status: 404, msg: "Comment not found!" });
 
-  return response.rows[0];
+  return rows[0];
 };
 
 export const fetchComments = async ({
@@ -56,15 +56,13 @@ export const fetchComments = async ({
      ORDER BY ${sort_by} ${order_by}
      LIMIT $1 OFFSET $2;`;
 
-  const response = await db.query(queryStr, values);
-
-  const comments = response.rows;
+  const { rows } = await db.query(queryStr, values);
 
   const returnedObject = {
-    comments,
+    comments: rows,
     currentPage: Number(page),
     commmentsPerPage: limit,
-    pageTotal: Math.ceil(comments[0].full_count / limit),
+    pageTotal: Math.ceil(rows[0].full_count / limit),
   };
 
   return returnedObject;
@@ -82,12 +80,12 @@ export const updateCommentById = async (
   `;
   const values = [inc_votes, comment_id];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  if (!response.rows[0])
+  if (!rows[0])
     return Promise.reject({ status: 404, msg: "Comment not found!" });
 
-  return response.rows[0];
+  return rows[0];
 };
 
 export const sendComment = async ({
@@ -103,9 +101,9 @@ export const sendComment = async ({
   `;
   const values = [cartoon_id, body, author];
 
-  const response = await db.query(queryStr, values);
+  const { rows } = await db.query(queryStr, values);
 
-  return response.rows[0];
+  return rows[0];
 };
 
 export const removeComment = async (comment_id: string) => {

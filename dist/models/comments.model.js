@@ -23,10 +23,10 @@ const fetchCommentById = (comment_id) => __awaiter(void 0, void 0, void 0, funct
     LIMIT 1;
     `;
     const values = [comment_id];
-    const response = yield connection_1.default.query(queryStr, values);
-    if (!response.rows[0])
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    if (!rows[0])
         return Promise.reject({ status: 404, msg: "Comment not found!" });
-    return response.rows[0];
+    return rows[0];
 });
 exports.fetchCommentById = fetchCommentById;
 const fetchComments = ({ sort_by = "created_at", order_by = "asc", cartoon_id, limit = 10, page = 1, }) => __awaiter(void 0, void 0, void 0, function* () {
@@ -54,13 +54,12 @@ const fetchComments = ({ sort_by = "created_at", order_by = "asc", cartoon_id, l
     queryStr += `
      ORDER BY ${sort_by} ${order_by}
      LIMIT $1 OFFSET $2;`;
-    const response = yield connection_1.default.query(queryStr, values);
-    const comments = response.rows;
+    const { rows } = yield connection_1.default.query(queryStr, values);
     const returnedObject = {
-        comments,
+        comments: rows,
         currentPage: Number(page),
         commmentsPerPage: limit,
-        pageTotal: Math.ceil(comments[0].full_count / limit),
+        pageTotal: Math.ceil(rows[0].full_count / limit),
     };
     return returnedObject;
 });
@@ -73,10 +72,10 @@ const updateCommentById = (comment_id, inc_votes) => __awaiter(void 0, void 0, v
   RETURNING *;
   `;
     const values = [inc_votes, comment_id];
-    const response = yield connection_1.default.query(queryStr, values);
-    if (!response.rows[0])
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    if (!rows[0])
         return Promise.reject({ status: 404, msg: "Comment not found!" });
-    return response.rows[0];
+    return rows[0];
 });
 exports.updateCommentById = updateCommentById;
 const sendComment = ({ cartoon_id, body, author, }) => __awaiter(void 0, void 0, void 0, function* () {
@@ -87,8 +86,8 @@ const sendComment = ({ cartoon_id, body, author, }) => __awaiter(void 0, void 0,
   RETURNING *
   `;
     const values = [cartoon_id, body, author];
-    const response = yield connection_1.default.query(queryStr, values);
-    return response.rows[0];
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    return rows[0];
 });
 exports.sendComment = sendComment;
 const removeComment = (comment_id) => __awaiter(void 0, void 0, void 0, function* () {

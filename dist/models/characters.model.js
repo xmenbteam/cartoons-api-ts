@@ -19,10 +19,10 @@ const util_functions_1 = require("../utils/util-functions");
 const fetchCharacterById = (character_id) => __awaiter(void 0, void 0, void 0, function* () {
     const queryStr = `SELECT * FROM characters WHERE character_id = $1;`;
     const values = [character_id];
-    const response = yield connection_1.default.query(queryStr, values);
-    if (!response.rows[0])
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    if (!rows[0])
         return Promise.reject({ status: 404, msg: "Character not found!" });
-    return response.rows[0];
+    return rows[0];
 });
 exports.fetchCharacterById = fetchCharacterById;
 const fetchCharacters = ({ sort_by = "created_at", order_by = "asc", cartoon_id, limit = 10, page = 1, }) => __awaiter(void 0, void 0, void 0, function* () {
@@ -53,8 +53,8 @@ const fetchCharacters = ({ sort_by = "created_at", order_by = "asc", cartoon_id,
   ORDER BY ${sort_by} ${order_by}
   LIMIT $1 OFFSET $2
   ;`;
-    const response = yield connection_1.default.query(queryStr, values);
-    const characters = response.rows;
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    const characters = rows;
     const returnObj = {
         characters,
         currentPage: Number(page),
@@ -72,10 +72,10 @@ const updateCharacterById = (character_id, inc_votes) => __awaiter(void 0, void 
   RETURNING *;
   `;
     const values = [inc_votes, character_id];
-    const response = yield connection_1.default.query(queryStr, values);
-    if (!response.rows[0])
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    if (!rows[0])
         return Promise.reject({ status: 404, msg: "Character not found!" });
-    return response.rows[0];
+    return rows[0];
 });
 exports.updateCharacterById = updateCharacterById;
 const insertCharacter = ({ name, cartoon_id, img_url, }) => __awaiter(void 0, void 0, void 0, function* () {
@@ -85,8 +85,8 @@ const insertCharacter = ({ name, cartoon_id, img_url, }) => __awaiter(void 0, vo
   RETURNING *;
   `;
     const values = [name, cartoon_id, img_url];
-    const response = yield connection_1.default.query(queryStr, values);
-    return response.rows[0];
+    const { rows } = yield connection_1.default.query(queryStr, values);
+    return rows[0];
 });
 exports.insertCharacter = insertCharacter;
 const removeCharacterById = (character_id) => __awaiter(void 0, void 0, void 0, function* () {
