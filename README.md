@@ -1,0 +1,5 @@
+# cartoons-api-ts
+
+THERE IS NO README MWAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAAAAAAAA
+
+(Don't forget to run yarn tsc)
